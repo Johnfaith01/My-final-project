@@ -1,0 +1,172 @@
+[
+  {
+    "id": 1,
+    "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2",
+    "price": 50000,
+    "room_type": "Deluxe Room",
+    "room_description": "Spacious deluxe room with city view, king-size bed, and modern decor.",
+    "amenities": ["WiFi", "Air Conditioning", "TV", "Mini Bar"],
+    "availability": true,
+    "rating": 4.5
+  },
+  {
+    "id": 2,
+    "image": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85",
+    "price": 25000,
+    "room_type": "Standard Room",
+    "room_description": "Comfortable standard room with essential amenities and cozy setup.",
+    "amenities": ["WiFi", "Fan", "TV"],
+    "availability": true,
+    "rating": 4.0
+  },
+  {
+    "id": 3,
+    "image": "https://images.unsplash.com/photo-1590490360182-c33d57733427",
+    "price": 80000,
+    "room_type": "Executive Suite",
+    "room_description": "Luxurious suite with separate living area and premium furnishings.",
+    "amenities": ["WiFi", "Air Conditioning", "Smart TV", "Jacuzzi"],
+    "availability": false,
+    "rating": 4.8
+  },
+  {
+    "id": 4,
+    "image": "https://images.unsplash.com/photo-1566665797739-1674de7a421a",
+    "price": 70000,
+    "room_type": "Family Room",
+    "room_description": "Large room perfect for families with multiple beds and ample space.",
+    "amenities": ["WiFi", "Air Conditioning", "TV", "Kitchenette"],
+    "availability": true,
+    "rating": 4.3
+  },
+  {
+    "id": 5,
+    "image": "https://images.unsplash.com/photo-1611892440504-42a792e24d32",
+    "price": 15000,
+    "room_type": "Single Room",
+    "room_description": "Compact room ideal for solo travelers with all basic needs.",
+    "amenities": ["WiFi", "Fan", "Desk"],
+    "availability": true,
+    "rating": 3.9
+  },
+  {
+    "id": 6,
+    "image": "https://images.unsplash.com/photo-1501117716987-c8e1ecb210f4",
+    "price": 120000,
+    "room_type": "Ocean View Room",
+    "room_description": "Beautiful room with stunning ocean views and private balcony.",
+    "amenities": ["WiFi", "Air Conditioning", "Balcony", "Mini Bar"],
+    "availability": false,
+    "rating": 4.7
+  },
+  {
+    "id": 7,
+    "image": "https://images.unsplash.com/photo-1551776235-dde6d4829808",
+    "price": 90000,
+    "room_type": "Business Room",
+    "room_description": "Designed for business travelers with workspace and fast internet.",
+    "amenities": ["WiFi", "Desk", "Air Conditioning", "Coffee Maker"],
+    "availability": true,
+    "rating": 4.4
+  },
+  {
+    "id": 8,
+    "image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b",
+    "price": 150000,
+    "room_type": "Presidential Suite",
+    "room_description": "Top-tier luxury suite with premium services and elegant interiors.",
+    "amenities": ["WiFi", "Jacuzzi", "Private Bar", "Butler Service"],
+    "availability": false,
+    "rating": 5.0
+  },
+  {
+    "id": 9,
+    "image": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c",
+    "price": 140000,
+    "room_type": "Twin Room",
+    "room_description": "Room with two single beds, ideal for friends or colleagues.",
+    "amenities": ["WiFi", "Air Conditioning", "TV"],
+    "availability": true,
+    "rating": 4.2
+  },
+  {
+    "id": 10,
+    "image": "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d",
+    "price": 85000,
+    "room_type": "Garden View Room",
+    "room_description": "Peaceful room overlooking the garden with relaxing ambiance.",
+    "amenities": ["WiFi", "Air Conditioning", "Patio"],
+    "availability": true,
+    "rating": 4.1
+  },
+  {
+    "id": 11,
+    "image": "https://images.unsplash.com/photo-1578898887932-dce23a595ad4",
+    "price": 170000,
+    "room_type": "Luxury Suite",
+    "room_description": "Elegant suite with premium furnishings and scenic views.",
+    "amenities": ["WiFi", "Air Conditioning", "Smart TV", "Balcony"],
+    "availability": true,
+    "rating": 4.9
+  },
+  {
+    "id": 12,
+    "image": "https://images.unsplash.com/photo-1559599101-f09722fb4948",
+    "price": 65000,
+    "room_type": "Studio Room",
+    "room_description": "Compact studio-style room with a modern open layout.",
+    "amenities": ["WiFi", "Kitchenette", "TV"],
+    "availability": true,
+    "rating": 4.0
+  },
+  {
+    "id": 13,
+    "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945",
+    "price": 230000,
+    "room_type": "Penthouse",
+    "room_description": "Exclusive penthouse with panoramic views and luxury amenities.",
+    "amenities": ["WiFi", "Private Pool", "Jacuzzi", "Terrace"],
+    "availability": false,
+    "rating": 5.0
+  },
+  {
+    "id": 14,
+    "image": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb",
+    "price": 10000,
+    "room_type": "Budget Room",
+    "room_description": "Affordable room with basic amenities for short stays.",
+    "amenities": ["WiFi", "Fan"],
+    "availability": true,
+    "rating": 3.8
+  },
+  {
+    "id": 15,
+    "image": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267",
+    "price": 75000,
+    "room_type": "Romantic Room",
+    "room_description": "Cozy and intimate room designed for couples.",
+    "amenities": ["WiFi", "Air Conditioning", "Jacuzzi"],
+    "availability": true,
+    "rating": 4.6
+  },
+  {
+    "id": 16,
+    "image": "https://images.unsplash.com/photo-1551776235-0f3f0d5d7d6e",
+    "price": 35000,
+    "room_type": "Accessible Room",
+    "room_description": "Room designed for accessibility with wheelchair-friendly features.",
+    "amenities": ["WiFi", "Accessible Bathroom", "TV"],
+    "availability": true,
+    "rating": 4.3
+  },
+  {
+    "id": 17,
+    "image": "https://images.unsplash.com/photo-1584132967334-10e028bd69f7",
+    "price": 170000,
+    "room_type": "Private Villa",
+    "room_description": "Standalone villa with private pool and luxury services.",
+    "amenities": ["WiFi", "Private Pool", "Kitchen", "Butler Service"],
+    "availability": false,
+    "rating": 4.9
+  }
+]
