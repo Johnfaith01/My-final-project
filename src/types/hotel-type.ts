@@ -1,9 +1,9 @@
 
 export interface HotelType {
-    image: string;
-    price: number;
-    room_type: string;
-    room_description: string;
+    images: string[];
+    pricePerNight: number;
+    category: string;
+    shortDescription: string;
     amenities: string[];
     rating: number;
 }

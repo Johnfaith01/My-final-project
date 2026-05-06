@@ -11,6 +11,7 @@ import HotelCard from "../hotel-card"
 
 function Hotels() {
     return (
+        
         <section className=" h-screen bg-white-50 flex flex-col justify-center gap-5">
 
             <div className="w-[90%] mx-auto text-center">
@@ -26,10 +27,10 @@ function Hotels() {
 
                                 <HotelCard
 
-                                    image={hotels.image}
-                                    price={hotels.price}
-                                    room_type={hotels.room_type}
-                                    room_description={hotels.room_description}
+                                    images={hotels.images}
+                                    pricePerNight={hotels.pricePerNight}
+                                    category={hotels.category}
+                                    shortDescription={hotels.shortDescription}
                                     amenities={hotels.amenities}
                                     rating={hotels.rating}
                                 />
