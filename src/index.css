@@ -197,3 +197,12 @@
   }
 }
 
+
+@theme{
+  --color-primary: rgba(201, 168, 76, .14);
+  --color-slider: #C9A84C
+}
+
+::-webkit-scrollbar{
+  display: none;
+}

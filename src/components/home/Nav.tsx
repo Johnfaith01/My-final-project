@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 function Nav() {
     return (
-        <section className="flex items-center justify-between px-10 py-5">
+        <section className="flex items-center justify-between px-10 py-5 fixed w-full top-0 left-0 z-50">
             <div className="flex gap-2">
                 <img src="/larita.png" alt="" className="w-10" />
                 <h1 className="text-[30px] cormorant text-white">LARITA</h1>

@@ -2,7 +2,7 @@ import { FaStar } from "react-icons/fa";
 
 export default function About() {
     return (
-        <section className="h-full">
+        <section className="h-full w-[90%] mx-auto">
 
             <div className="grid grid-cols-2 items-center my-5">
                 <div className="flex">

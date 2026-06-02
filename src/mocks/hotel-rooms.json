@@ -1,7 +1,8 @@
 [
   {
-    "id": 1,
+    "id": "RM-001",
     "name": "The Larita Suite",
+    "status": "Occupied",
     "slug": "larita-suite",
     "category": "Presidential Suite",
     "shortDescription": "The pinnacle of Lagos luxury. Floor-to-ceiling views, private terrace, and gold-leaf accents throughout.",
@@ -11,7 +12,7 @@
     "size": 280,
     "floor": 20,
     "maxGuests": 4,
-    "bedType": "King + King",
+    "bedType": "King",
     "beds": 2,
     "bathrooms": 3,
     "amenities": [
@@ -34,8 +35,9 @@
     ]
   },
   {
-    "id": 2,
+    "id": "RM-002",
     "name": "Lagos Horizon Penthouse",
+    "status": "Vacant",
     "slug": "lagos-horizon-penthouse",
     "category": "Penthouse",
     "shortDescription": "Wraparound skyline views and a private rooftop garden. Designed for the discerning traveller.",
@@ -68,8 +70,9 @@
     ]
   },
   {
-    "id": 3,
+    "id": "RM-003",
     "name": "Grand Deluxe King",
+    "status": "Occupied",
     "slug": "grand-deluxe-king",
     "category": "Deluxe Room",
     "shortDescription": "Spacious elegance with warm wood tones, blackout drapes, and a deep soaking tub.",
@@ -102,8 +105,9 @@
     ]
   },
   {
-    "id": 4,
+    "id": "RM-004",
     "name": "Ocean View Suite",
+    "status": "Vacant",
     "slug": "ocean-view-suite",
     "category": "Suite",
     "shortDescription": "Wake up to the Atlantic. A living sanctuary with seamless indoor-outdoor flow.",
@@ -136,8 +140,9 @@
     ]
   },
   {
-    "id": 5,
+    "id": "RM-005",
     "name": "Executive Club Room",
+    "status": "Occupied",
     "slug": "executive-club-room",
     "category": "Club Room",
     "shortDescription": "Business meets elegance. Club lounge access, fast WiFi, and a dedicated work suite.",
@@ -170,8 +175,9 @@
     ]
   },
   {
-    "id": 6,
+    "id": "RM-006",
     "name": "Eko Terrace Suite",
+    "status": "Maintenance",
     "slug": "eko-terrace-suite",
     "category": "Suite",
     "shortDescription": "A Lagos original — named for Victoria Island's spirit, with a 40sqm private terrace.",
@@ -204,8 +210,9 @@
     ]
   },
   {
-    "id": 7,
+    "id": "RM-007",
     "name": "Classic Twin",
+    "status": "Dirty",
     "slug": "classic-twin",
     "category": "Classic Room",
     "shortDescription": "Refined simplicity for two. Perfect for colleagues or friends travelling together.",
@@ -238,8 +245,9 @@
     ]
   },
   {
-    "id": 8,
+    "id": "RM-008",
     "name": "Signature Junior Suite",
+    "status": "Occupied",
     "slug": "signature-junior-suite",
     "category": "Junior Suite",
     "shortDescription": "An elevated stay with suite-level luxuries at an accessible price point.",
@@ -272,8 +280,9 @@
     ]
   },
   {
-    "id": 9,
+    "id": "RM-009",
     "name": "Family Grand Suite",
+    "status": "Vacant",
     "slug": "family-grand-suite",
     "category": "Family Suite",
     "shortDescription": "Space, comfort, and warmth for the whole family in the heart of Lagos.",
@@ -306,9 +315,10 @@
     ]
   },
   {
-    "id": 10,
+    "id": "RM-010",
     "name": "Spa Retreat Room",
     "slug": "spa-retreat-room",
+    "status": "Occupied",
     "category": "Wellness Room",
     "shortDescription": "A sanctuary of stillness. Direct access to Aurum's private spa and thermal pools.",
     "description": "The Spa Retreat Room is our wellness sanctuary — featuring aromatherapy diffusers, a chromotherapy rainfall shower, weighted blankets, organic amenities, and complimentary daily spa access.",
@@ -340,8 +350,9 @@
     ]
   },
   {
-    "id": 11,
+    "id": "RM-011",
     "name": "Boardroom Suite",
+    "status": "Vacant",
     "slug": "boardroom-suite",
     "category": "Business Suite",
     "shortDescription": "A private boardroom embedded in a luxury suite. Close deals without leaving the hotel.",
@@ -374,8 +385,9 @@
     ]
   },
   {
-    "id": 12,
+    "id": "RM-012",
     "name": "Collector's Suite",
+    "status": "Maintenance",
     "slug": "collectors-suite",
     "category": "Art Suite",
     "shortDescription": "A rotating gallery of Nigerian contemporary art in a suite curated for the cultured guest.",
@@ -408,8 +420,9 @@
     ]
   },
   {
-    "id": 13,
+    "id": "RM-013",
     "name": "Classic King",
+    "status": "Dirty",
     "slug": "classic-king",
     "category": "Classic Room",
     "shortDescription": "The Aurum standard — timeless comfort with everything you need, nothing you don't.",
@@ -442,8 +455,9 @@
     ]
   },
   {
-    "id": 14,
+    "id": "RM-014",
     "name": "Pool Cabana Suite",
+    "status": "Occupied",
     "slug": "pool-cabana-suite",
     "category": "cabana-Suite",
     "shortDescription": "Direct step-out access to the infinity pool. Indoors and outdoors become one.",
@@ -476,8 +490,9 @@
     ]
   },
   {
-    "id": 15,
+    "id": "RM-015",
     "name": "Skyline Honeymoon Suite",
+    "status": "Occupied",
     "slug": "skyline-honeymoon-suite",
     "category": "Honeymoon Suite",
     "shortDescription": "Crafted for love. Rose petals, champagne, and the Lagos skyline as your backdrop.",

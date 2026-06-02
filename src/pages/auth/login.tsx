@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 function Login() {
     return (
         
-        <section className="min-h-screen flex items-center justify-center bg-[url('/login-img.jpg')] bg-cover">
+        <section className="min-h-screen flex items-center justify-center bg-[url('/login-img.jpg')] bg-cover py-20">
             
 
             <div className="w-full max-w-md px-10 py-12 border outline-none border-stone-200 shadow rounded-2xl bg-black/50 backdrop-blur-[2px]">

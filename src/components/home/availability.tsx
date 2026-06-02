@@ -1,7 +1,7 @@
 
 import { NativeSelect, NativeSelectOption } from "../ui/native-select";
 import hotels from "../../mocks/hotel-rooms.json"
-import { PopOver } from "../popover";
+import { DatePickerInput } from "../popover";
 
 
 export default function Availability() {
@@ -11,11 +11,11 @@ export default function Availability() {
 
             <div className="flex gap-5 justify-between items-center  width-[80%] mx-auto my-10">
                
-               <PopOver Label="CHECK IN" />
+               <DatePickerInput label="Check In"/>
 
                 <div className="w-px h-16 bg-gray-300" />
 
-                <PopOver Label="CHECK OUT" />
+                <DatePickerInput label="Check Out"/>
 
                 <div className="w-px h-16 bg-gray-300" />
 

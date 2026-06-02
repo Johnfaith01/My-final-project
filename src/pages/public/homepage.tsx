@@ -1,6 +1,5 @@
 
 import Availability from "@/components/home/availability"
-import Nav from "../../components/home/Nav"
 import HeroSection from "../../components/home/hero-section"
 import Info from "@/components/home/info"
 import Hotels from "@/components/home/hotels"
@@ -8,7 +7,6 @@ import Amenities from "@/components/home/amenities"
 import Review from "@/components/home/review"
 import Video from "@/components/home/video"
 import About from "@/components/home/about"
-import Footer from "@/components/home/footer"
 
 
 
@@ -19,7 +17,6 @@ function Homepage() {
                 style={{
                     backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('/hero.png')",
                 }}>
-                <Nav />
                 <HeroSection />
             </div>
             <Availability />
@@ -29,7 +26,6 @@ function Homepage() {
             <Review />
             <About />
             <Video />
-            <Footer />
         </>
 
     )

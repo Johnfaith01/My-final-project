@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 function Register() {
     return (
-        <section className="bg-[url('/login-img.jpg')] bg-cover min-h-screen flex items-center justify-center">
+        <section className="bg-[url('/login-img.jpg')] bg-cover min-h-screen flex items-center justify-center py-20">
 
             <div className="w-full max-w-md p-5 border outline-none border-stone-200  rounded-2xl bg-black/50 backdrop-blur-[2px] shadow my-6">
 
