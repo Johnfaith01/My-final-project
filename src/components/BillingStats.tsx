@@ -38,7 +38,7 @@ const overdue = data
 
 const stats = [
   {
-    label:  "Total Revenue",
+    label:  "Total Revenue (MONTH)",
     value:  formatNaira(totalRevenue),
     change: "5 paid invoices",
     color:  "border-t-green-500",

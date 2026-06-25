@@ -29,19 +29,19 @@ function OverviewPage() {
           <div className="col-span-2 border-[0.5px] border-primary pt-2 pb-10 bg-[#12100D]">
             <div className="flex items-center justify-between px-5 pb-2">
               <div className="text-sm">
-                <h1 className="text-lg text-[#F4EFE4]">Recent Reservations</h1>
+                <h1 className="text-lg font-serif text-[#F4EFE4]">Recent Reservations</h1>
                 <p className="text-gray-400">4 arrivals · 2 departures</p>
               </div>
 
-              <input type="submit" value="VIEW ALL" onClick={handleSubmit} className="px-2 py-1 border border-primary text-sm cursor-pointer text-slider" />
+              <input type="submit" value="VIEW ALL" onClick={handleSubmit} className="px-2 py-1 border border-primary text-sm cursor-pointer text-slider hover:border-slider" />
             </div>
             <hr className="h-px bg-primary border-none" />
             <Reservations reservations={reservation} />
           </div>
 
-          <div className="col-span-1 border border-primary bg-[#12100D] px-3">
+          <div className="col-span-1 border border-primary bg-[#12100D] px-3 pb-2">
             <div className="text-sm pt-1 py-3">
-              <h1 className="text-lg text-[#F4EFE4]">Recent Activity</h1>
+              <h1 className="text-lg font-serif text-[#F4EFE4]">Recent Activity</h1>
               <p className="text-gray-400">Last 3 hours</p>
             </div>
             <hr className="w-full border-primary" />
@@ -95,7 +95,7 @@ function OverviewPage() {
               <p className="text-xs text-gray-400">2026 - Jan-May(#M)</p>
             </div>
 
-            <button className="text-sm p-1.5 border border-primary text-slider cursor-pointer">Full Report</button>
+            <button className="text-sm p-1.5 border border-primary text-slider cursor-pointer hover:border-slider">Full Report</button>
           </div>
         </div>
 

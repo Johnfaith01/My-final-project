@@ -39,7 +39,7 @@ function Reservation() {
                         <button
                         key={filter}
                         onClick={()=>setActiveFilter(filter)}
-                        className={`py-2 text-xs px-4 bg-[#12100D] cursor-pointer transition-colors duration-200 ${activeFilter === filter ? 'border border-amber-400/40 text-gray-400' : "border border-primary text-gray-400 hover:border-gray-400/50 hover:text-gray-300"}`}
+                        className={`py-2 text-xs px-4 bg-[#12100D] cursor-pointer transition-colors duration-200 ${activeFilter === filter ? 'border border-amber-400/40 text-slider bg-slider/10' : "border border-primary text-gray-400 hover:border-gray-400/50 hover:text-gray-300"}`}
                         >
                             {filter}
                         </button>

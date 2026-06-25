@@ -33,8 +33,8 @@ function Guests() {
                 </div>
 
                 <div className="flex items-center gap-2 border bg-slider p-2 rounded-md cursor-pointer text-sm text-black">
-                    <Plus />
-                    <p>ASSIGN TASK</p>
+                    <Plus className="w-4 h-4"/>
+                    <p>ADD GUEST</p>
                 </div>
             </div>
 

@@ -9,7 +9,7 @@ function Login() {
         <section className="min-h-screen flex items-center justify-center bg-[url('/login-img.jpg')] bg-cover py-20">
             
 
-            <div className="w-full max-w-md px-10 py-12 border outline-none border-stone-200 shadow rounded-2xl bg-black/50 backdrop-blur-[2px]">
+            <div className="w-full max-w-md px-10 py-12 border outline-none border-stone-200 shadow rounded-2xl bg-black/50 backdrop-blur-[5px]">
                 <div className="mb-8 text-center">
                     <h1 className="text-2xl font-bold text-[#B8924A]">Welcome Back!</h1>
                     <p className="text-sm text-white mt-1">Sign in to your account</p>

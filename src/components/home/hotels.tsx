@@ -12,14 +12,14 @@ import HotelCard from "../hotel-card"
 function Hotels() {
     return (
 
-        <section className=" h-screen bg-white-50 flex flex-col justify-center gap-5">
+        <section className="flex flex-col justify-center gap-5">
 
                 <div className="w-[90%] mx-auto text-center">
                     <h1 className="text-2xl text-[#B8924A]">ACCOMODATIONS</h1>
                     <h1 className="text-5xl">Rooms & Suites</h1>
                 </div>
 
-                <Carousel className="w-[90%] mx-auto">
+                <Carousel className="w-[80%] mx-auto md:w-[90%]">
                     <CarouselContent>
                         {
                             hotel.map((hotels, i) => (

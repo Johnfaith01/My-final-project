@@ -14,6 +14,7 @@ const statusStyles: Record<string, string> = {
     "Paid": "bg-green-500/10 text-green-500 border border-green-500/20",
     "Pending": "bg-amber-500/10 text-amber-500 border border-amber-500/20",
     "Overdue": "bg-red-500/10   text-red-500   border border-red-500/20",
+    "Partial": "bg-purple-500/10 text-purple-400 border border-purple-500/20",
 }
 
 const formatNaira = (amount: number) => {

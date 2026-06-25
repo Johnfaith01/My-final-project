@@ -31,44 +31,68 @@ function RoomDashboard() {
     }
 
     return (
+        <div>
+            <div
+                onClick={() => setSelectedRoom(null)}
+                className=" grid grid-cols-5 gap-3 p-5">
+                {
+                    roomDashboardStyles.map((room) => (
+                        <Popover key={room.id}>
+                            <PopoverTrigger asChild>
+                                <div
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleClick(room);
+                                    }}
 
-        <div
-            onClick={() => setSelectedRoom(null)}
-            className=" grid grid-cols-5 gap-3 p-5">
-            {
-                roomDashboardStyles.map((room) => (
-                    <Popover key={room.id}>
-                        <PopoverTrigger asChild>
-                            <div
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleClick(room);
-                                }}
 
-
-                                className={`flex flex-col text-sm cursor-pointer gap-1 p-10 text-center rounded-md ${statusStyles[room.status] || 'bg-gray-500/10 text-gray-500 border border-gray-500/20'}
+                                    className={`flex flex-col text-sm cursor-pointer gap-1 p-10 text-center rounded-md ${statusStyles[room.status] || 'bg-gray-500/10 text-gray-500 border border-gray-500/20'}
                          `}>
-                                <h1>{room.id}</h1>
-                                <p>{room.category}</p>
-                            </div>
-                        </PopoverTrigger>
+                                    <h1>{room.id}</h1>
+                                    <p>{room.category}</p>
+                                </div>
+                            </PopoverTrigger>
 
-                        <PopoverContent
-                            side="right"
-                            align="end"
-                            className="w-fit bg-[#1C1914] border border-primary px-3 py-2"
-                        >
-                            <div className="flex items-center gap-2 text-sm text-[#F4EFE4]">
-                                <span className={`w-2 h-2 rounded-full ${statusDotColor[room.status]}`} />
-                                <span>{room.name} — {room.status}</span>
-                            </div>
-                        </PopoverContent>
+                            <PopoverContent
+                                side="right"
+                                align="end"
+                                className="w-fit bg-[#1C1914] border border-primary px-3 py-2"
+                            >
+                                <div className="flex items-center gap-2 text-sm text-[#F4EFE4]">
+                                    <span className={`w-2 h-2 rounded-full ${statusDotColor[room.status]}`} />
+                                    <span>{room.name} — {room.status}</span>
+                                </div>
+                            </PopoverContent>
 
-                    </Popover>
-                ))
+                        </Popover>
+                    ))
 
-            }
+                }
+
+            </div>
+            <div className='flex gap-3 px-5 py-3'>
+                <div className='flex gap-2 items-center'>
+                    <div className='w-3 h-3 bg-blue-400/20 border border-blue-800'></div>
+                    <h1 className='text-xs text-gray-400'>Occupied</h1>
+                </div>
+
+                <div className='flex gap-2 items-center'>
+                    <div className='w-3 h-3 bg-green-400/20 border border-green-800'></div>
+                    <h1 className='text-xs text-gray-400'>Vacant</h1>
+                </div>
+
+                <div className='flex gap-2 items-center'>
+                    <div className='w-3 h-3 bg-amber-400/20 border border-amber-800'></div>
+                    <h1 className='text-xs text-gray-400'>Maintainance</h1>
+                </div>
+
+                <div className='flex gap-2 items-center'>
+                    <div className='w-3 h-3 bg-red-400/20 border border-red-800'></div>
+                    <h1 className='text-xs text-gray-400'>Needs cleaning</h1>
+                </div>
+            </div>
         </div>
+
     )
 }
 

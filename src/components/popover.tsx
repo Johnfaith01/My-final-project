@@ -36,21 +36,19 @@ function isValidDate(date: Date | undefined) {
   return !isNaN(date.getTime())
 }
 
-interface DateProps{
-   label: string 
-   className?: string
+interface DateProps {
+  label?: string
+  className?: string
 }
 
-export function DatePickerInput({label, className} : DateProps) {
+export function DatePickerInput({ label, className }: DateProps) {
   const [open, setOpen] = React.useState(false)
-  const [date, setDate] = React.useState<Date | undefined>(
-    new Date()
-  )
+  const [date, setDate] = React.useState<Date | undefined>(new Date())
   const [month, setMonth] = React.useState<Date | undefined>(date)
   const [value, setValue] = React.useState(formatDate(date))
 
   return (
-    <Field className={className || "mx-auto w-48"}>
+    <Field className={className || ""}>
       <FieldLabel htmlFor="date-required">{label}</FieldLabel>
       <InputGroup>
         <InputGroupInput
@@ -72,6 +70,7 @@ export function DatePickerInput({label, className} : DateProps) {
             }
           }}
         />
+
         <InputGroupAddon align="inline-end">
           <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
@@ -100,6 +99,8 @@ export function DatePickerInput({label, className} : DateProps) {
             </PopoverContent>
           </Popover>
         </InputGroupAddon>
+
+        
       </InputGroup>
     </Field>
   )

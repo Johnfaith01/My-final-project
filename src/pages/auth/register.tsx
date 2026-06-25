@@ -5,7 +5,7 @@ function Register() {
     return (
         <section className="bg-[url('/login-img.jpg')] bg-cover min-h-screen flex items-center justify-center py-20">
 
-            <div className="w-full max-w-md p-5 border outline-none border-stone-200  rounded-2xl bg-black/50 backdrop-blur-[2px] shadow my-6">
+            <div className="w-full max-w-md p-5 border outline-none border-stone-200  rounded-2xl bg-black/50 backdrop-blur-[5px] shadow my-6">
 
                 <div className="mb-4 text-center">
                     <h1 className="text-xl font-bold text-[#B8924A]">LARITA</h1>
@@ -44,12 +44,12 @@ function Register() {
 
                      <button type="submit" className="w-full bg-[#B8924A] hover:bg-[#a07a38] text-white py-3 rounded-md font-semibold uppercase text-sm cursor-pointer border-none mt-2">Create Account</button>
 
-                     <div className="flex items-center gap-1 text-white">
+                     <div className="flex items-center gap-1 text-white pt-3">
                         <input type="checkbox" />
                         <p>I agree to the <a href="" className="text-[#B8924A]">Terms of Service</a> and <a href="" className="text-[#B8924A]">Privacy Policy</a></p>
                      </div>
 
-                     <p className="text-center text-white">Already have an account?  <Link to="/login" className="text-[#B8924A] font-semibold hover:underline">Login</Link>
+                     <p className="text-center text-white pb-3">Already have an account?  <Link to="/login" className="text-[#B8924A] font-semibold hover:underline">Login</Link>
                     </p>
                 </form>
             </div>

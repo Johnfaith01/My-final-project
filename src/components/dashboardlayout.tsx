@@ -1,10 +1,12 @@
-import { BarChart, MessageCircle, Plus, Settings, User2Icon } from "lucide-react"
+import { BarChart, MessageCircle, Settings, User2Icon } from "lucide-react"
 import type { ReactNode } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { Input } from "./ui/input"
 import { MdCleaningServices, MdDashboard, MdHotel, MdNotifications, } from "react-icons/md"
 import { IoMdAnalytics, IoMdPeople } from "react-icons/io"
 import { BsCalendarCheck, BsClipboardCheck, BsCreditCard2Front } from "react-icons/bs"
+import { AssignTask } from "./assignTask"
+
 
 interface LinkProps {
     id: number,
@@ -89,11 +91,12 @@ export default function DashboardLayout({ children }: DashboardProps) {
     ]
     const path = useLocation()
 
+
     return (
         <section className="grid grid-cols-5">
             <aside className="col-span-1 bg-[#12100D] border-r border-slider/20 text-gray-400 p-4 h-screen overflow-y-auto sticky top-0">
 
-                <div className="flex items-centergap-4 bg-white rounded-md py-2 px-5 text-black gap-4 mb-10">
+                <div className="flex items-centergap-4 rounded-md py-2 px-5 text-black bg-slider gap-4 mb-10">
                     <img src="/larita.png" alt="" className="w-5" />
                     <h1 className="font-bold">LARITA</h1>
                 </div>
@@ -104,7 +107,7 @@ export default function DashboardLayout({ children }: DashboardProps) {
                             <Link
                                 to={link.pathname}
                                 key={link.id}
-                                className={`hover:bg-white hover:text-black transition-all duration-300 py-2 px-4 rounded-md flex items-center gap-2 ${path.pathname === link.pathname ? 'bg-white text-black' : ''}`}
+                                className={`hover:bg-slider/60 hover:text-white transition-all duration-300 py-2 px-4 rounded-md flex items-center gap-2 ${path.pathname === link.pathname ? 'bg-slider text-black' : ''}`}
                             >
                                 {link.icon}
                                 <span>{link.name}</span>
@@ -136,16 +139,18 @@ export default function DashboardLayout({ children }: DashboardProps) {
                     </div>
 
                     <div className="flex items-center gap-4">
-                        <Input type="text" placeholder="Search guests, rooms..." className="outline-none w-full border-primary text-gray-400 " />
-                        <div className="p-1.5 border border-primary rounded-md">
+                        <Input type="text" placeholder="Search guests, rooms..." className="outline-none w-full border border-primary text-white hover:border-slider bg-[#201d1a] " />
+                        <div className="p-1.5 border border-primary rounded-md bg-[#201d1a] cursor-pointer hover:border-slider transition-all duration-300">
                             <MessageCircle className="text-gray-400" />
                         </div>
-                        <div className="p-2 border border-primary rounded-md">
+                        <div className="p-2 border border-primary rounded-md bg-[#201d1a] cursor-pointer hover:border-slider transition-all duration-300">
                             <MdNotifications className="text-gray-400" />
                         </div>
-                        <div className="flex items-center gap-2 border bg-slider p-2 rounded-md cursor-pointer w-full text-sm text-black">
-                            <Plus />
-                            <p>ASSIGN TASK</p>
+
+                        
+                        <div
+                        >
+                            <AssignTask/>
                         </div>
                     </div>
                 </div>
