@@ -16,7 +16,6 @@ import { Plus } from "lucide-react"
 import { NativeSelect, NativeSelectOption } from "../components/ui/native-select";
 import { DatePickerInput } from "./popover"
 import { Textarea } from "./ui/textarea"
-import { FaArrowRightLong } from "react-icons/fa6";
 
 export function AssignTask() {
     return (
@@ -67,7 +66,7 @@ export function AssignTask() {
                         <DialogClose asChild>
                             <Button variant="outline" className="cursor-pointer">CANCEL</Button>
                         </DialogClose>
-                        <Button type="submit" className="bg-slider cursor-pointer text-black py-3 px-2 hover:bg-slider/90 hover:text-white flex items-center">ASSIGN TASK<FaArrowRightLong className="w-4 h-4"/></Button>
+                        <Button type="submit" className="bg-slider cursor-pointer text-black py-4 px-3 hover:bg-slider/90 font-medium hover:text-white flex items-center">ASSIGN TASK</Button>
                     </DialogFooter>
                 </DialogContent>
             </form>

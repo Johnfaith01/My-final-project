@@ -12,7 +12,7 @@ function Nav() {
             <nav className="hidden md:flex gap-4 lg:gap-10 text-xs lg:text-sm font-bold lg:text-[15px] text-white">
                 <a className="hover:text-[#B8924A] transition" href="">HOME</a>
                 <a className="hover:text-[#B8924A] transition" href="">ROOMS & SUITES</a>
-                <a className="hover:text-[#B8924A] transition" href="">ABOUT</a>
+                <Link to="/about" className="hover:text-[#B8924A] transition">ABOUT</Link>
                 <a className="hover:text-[#B8924A] transition" href="">NEWS & OFFERS</a>
                 <Link to="/" className="hover:text-[#B8924A] transition">CONTACT</Link>
             </nav>

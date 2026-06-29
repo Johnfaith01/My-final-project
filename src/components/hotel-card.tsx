@@ -8,9 +8,9 @@ import { FaStar } from "react-icons/fa";
 export default function HotelCard({ pricePerNight, category, shortDescription, amenities, rating, images }: HotelType) {
     return (
 
-        //VIEWINF HOTEL DETAILS
+        //VIEW HOTEL DETAILS
         <Link to={`/view/${category}`}>
-            <section className="mx-auto bg-[#F9F5EF]/90 flex flex-col md:grid md:grid-cols-2 md:my-10">
+            <section className="mx-auto bg-[#12100D] flex flex-col md:grid md:grid-cols-2">
                 <div className="w-full h-64 md:h-full">
                     <img src={images[0]} alt={category} className="w-full h-full object-cover" />
                 </div>
@@ -33,7 +33,7 @@ export default function HotelCard({ pricePerNight, category, shortDescription, a
                     </h1>
                     <div className="flex gap-4">
                         <Link to="/booking" className="bg-[#B8924A] text-white px-4 py-2 md:px-5 md:py-3 w-max rounded-md text-sm md:text-base">BOOK NOW</Link>
-                        <Link to={`/view/${category}`} className="text-black border border-black rounded-md px-4 py-2 md:px-5 md:py-3 w-max flex items-center gap-2 text-sm md:text-base">
+                        <Link to={`/view/${category}`} className="text-white border border-primary rounded-md px-4 py-2 md:px-5 md:py-3 w-max flex items-center gap-2 text-sm md:text-base">
                             <span>VIEW ROOM</span><FaArrowRightLong />
                         </Link>
                     </div>

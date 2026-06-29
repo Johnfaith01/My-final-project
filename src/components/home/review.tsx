@@ -11,7 +11,7 @@ export default function Review() {
 
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-[90%] mx-auto gap-4 sm:gap-5">
-                <div className="p-4 sm:p-5 bg-[#F9F5EF]/90 shadow rounded-md flex flex-col gap-4 sm:gap-6 py-6 sm:py-10">
+                <div className="p-4 sm:p-5 bg-[#12100D] shadow rounded-md flex flex-col gap-4 sm:gap-6 py-6 sm:py-10">
                     <div className="flex flex-col gap-4 sm:gap-7">
                         <div className="flex gap-1 text-[#B8924A]">
                             <FaStar className="text-sm" />
@@ -32,7 +32,7 @@ export default function Review() {
                         </div>
                     </div>
                 </div>
-                <div className="p-4 sm:p-5 bg-[#F9F5EF]/90 shadow rounded-md flex flex-col gap-4 sm:gap-6 py-6 sm:py-10">
+                <div className="p-4 sm:p-5 bg-[#12100D] shadow rounded-md flex flex-col gap-4 sm:gap-6 py-6 sm:py-10">
                     <div className="flex flex-col gap-4 sm:gap-7">
                         <div className="flex gap-1 text-[#B8924A]">
                             <FaStar className="text-sm" />
@@ -53,7 +53,7 @@ export default function Review() {
                         </div>
                     </div>
                 </div>
-                <div className="p-4 sm:p-5 bg-[#F9F5EF]/90 shadow rounded-md flex flex-col gap-4 sm:gap-6 py-6 sm:py-10">
+                <div className="p-4 sm:p-5 bg-[#12100D] shadow rounded-md flex flex-col gap-4 sm:gap-6 py-6 sm:py-10">
                     <div className="flex flex-col gap-4 sm:gap-7">
                         <div className="flex gap-1 text-[#B8924A]">
                             <FaStar className="text-sm" />

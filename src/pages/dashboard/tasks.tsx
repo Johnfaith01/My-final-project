@@ -1,6 +1,5 @@
 import DashboardLayout from "@/components/dashboardlayout"
 import TaskCard from "@/components/task-card"
-import { Plus } from "lucide-react"
 import tasks from "@/mocks/tasks.json"
 import { AssignTask } from "@/components/assignTask"
 

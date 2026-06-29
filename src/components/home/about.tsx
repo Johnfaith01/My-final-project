@@ -19,7 +19,7 @@ export default function About() {
             </div>
             
 
-            <div className="border-2 border-t-primary border-b-primary py-10 my-10 bg-[#F9F5EF]/90">
+            <div className="border-2 border-t-primary border-b-primary py-10 my-10 bg-[#12100D]">
             <div className="flex flex-col sm:flex-row items-center justify-center gap-5 sm:gap-8 md:gap-15 w-[90%] mx-auto ">
                 <div className="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
                     <div className="p-2 bg-slate-200 rounded-md">

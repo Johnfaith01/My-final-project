@@ -12,7 +12,7 @@ import HotelCard from "../hotel-card"
 function Hotels() {
     return (
 
-        <section className="flex flex-col justify-center gap-5">
+        <section className="flex flex-col justify-center gap-5 mt-20 md:-mb-20">
 
                 <div className="w-[90%] mx-auto text-center">
                     <h1 className="text-2xl text-[#B8924A]">ACCOMODATIONS</h1>
@@ -23,7 +23,7 @@ function Hotels() {
                     <CarouselContent>
                         {
                             hotel.map((hotels, i) => (
-                                <CarouselItem key={i} className="basis-1/1">
+                                <CarouselItem key={i} className="basis-full">
 
                                     <HotelCard
 

@@ -1,6 +1,7 @@
 import { FaStar } from "react-icons/fa";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Fade } from "react-awesome-reveal"
+import { Link } from "react-router-dom";
 
 function HeroSection() {
     return (
@@ -32,7 +33,7 @@ function HeroSection() {
                 </Fade>
             </div>
 
-            
+
 
             {/* Bottom Left — Since banner */}
             <Fade delay={500} triggerOnce>
@@ -43,12 +44,15 @@ function HeroSection() {
                         </h2>
                     </span>
                     <span>
-                        <div className="flex items-center gap-2 justify-center cursor-pointer bg-[#B8924A] px-5 py-3">
-                            <button type="button" className="cursor-pointer text-white text-xs sm:text-sm">
-                                LARITA STORY
-                            </button>
-                            <FaArrowRightLong className="text-white text-xs" />
-                        </div>
+                        <Link to="/about">
+
+                            <div className="flex items-center gap-2 justify-center cursor-pointer bg-[#B8924A] px-5 py-3">
+                                <button className="cursor-pointer text-white text-xs sm:text-sm">
+                                    LARITA STORY
+                                </button>
+                                <FaArrowRightLong className="text-white text-xs" />
+                            </div>
+                        </Link>
                     </span>
                 </div>
 
@@ -65,7 +69,7 @@ function HeroSection() {
                 </div>
             </Fade>
 
-        </section>
+        </section >
     )
 }
 

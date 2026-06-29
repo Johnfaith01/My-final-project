@@ -7,7 +7,7 @@ import { FaPersonSwimming } from "react-icons/fa6";
 
 export default function Amenities() {
     return (
-        <section className="flex flex-col gap-7 py-10 bg-[#F9F5EF]/90 px-4 sm:px-0">
+        <section className="flex flex-col gap-7 py-10 bg-[#12100D] px-4 sm:px-0">
 
                 <div className="flex flex-col gap-3 text-center">
                     <h1 className="text-lg sm:text-xl text-[#B8924A]">THE LARITA EXPERIENCE</h1>

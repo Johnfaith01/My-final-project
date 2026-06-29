@@ -15,11 +15,11 @@ import Footer from "@/components/home/footer"
 function Homepage() {
     return (
         <>
-            <div className="bg-[#F9F5EF]/60 min-h-screen">
+            <div className="bg-[#0A0806]">
                 <Nav />
                 <div className="bg-cover bg-center min-h-screen"
                     style={{
-                        backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('/hero.png')",
+                        backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('/hero.webp')",
                     }}>
                     <HeroSection />
                 </div>
