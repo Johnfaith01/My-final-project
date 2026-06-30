@@ -7,8 +7,8 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
-import { Plus } from "lucide-react"
 import guestData from "@/mocks/guests.json"
+import AddGuest from "@/components/addGuest"
 
 const statusStyles: Record<string, string> = {
     "Checked In": "bg-green-500/10 text-green-500 border border-green-500/20",
@@ -26,15 +26,14 @@ function Guests() {
     return (
         <DashboardLayout>
 
-            <div className="flex items-center justify-between">
+            <div className="flex justify-between">
                 <div className="text-white mb-7">
                     <h1 className='text-white text-2xl'>Guest Management</h1>
                     <p className='text-gray-400 text-sm'>Click on a guest to view their details</p>
                 </div>
 
-                <div className="flex items-center gap-2 bg-slider p-2 rounded-md cursor-pointer text-sm text-black">
-                    <Plus className="w-4 h-4"/>
-                    <p>ADD GUEST</p>
+                <div>
+                    <AddGuest/>
                 </div>
             </div>
 

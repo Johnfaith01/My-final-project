@@ -94,28 +94,33 @@ export default function DashboardLayout({ children }: DashboardProps) {
 
     return (
         <section className="grid grid-cols-5">
-            <aside className="col-span-1 bg-[#12100D] border-r border-slider/20 text-gray-400 p-4 h-screen overflow-y-auto sticky top-0">
+            <aside className="col-span-1 bg-[#12100D] border-r border-slider/20 text-gray-400 pt-4 h-screen overflow-y-auto sticky top-0">
 
-                <div className="flex items-centergap-4 rounded-md py-2 px-5 text-black bg-slider gap-4 mb-10">
+                <div className="flex items-centergap-4 rounded-md py-2 px-5 text-black bg-slider gap-4 mb-7 mx-4">
                     <img src="/larita.png" alt="" className="w-5" />
                     <h1 className="font-bold">LARITA</h1>
                 </div>
 
-                <div className="flex flex-col gap-3">
-                    {
-                        links.map((link) => (
-                            <Link
-                                to={link.pathname}
-                                key={link.id}
-                                className={`hover:bg-slider/60 hover:text-white transition-all duration-300 py-2 px-4 rounded-md flex items-center gap-2 ${path.pathname === link.pathname ? 'bg-slider text-black' : ''}`}
-                            >
-                                {link.icon}
-                                <span>{link.name}</span>
-                            </Link>
-                        ))
-                    }
 
-                </div>
+                    <div className="flex flex-col gap-3 p-4">
+                        {
+                            links.map((link) => (
+                                <Link
+                                    to={link.pathname}
+                                    key={link.id}
+                                    className={`hover:bg-slider/60 hover:text-white transition-all duration-300 py-2 px-4 rounded-md flex items-center gap-2 ${path.pathname === link.pathname ? 'bg-slider text-black' : ''}`}
+                                >
+                                    {link.icon}
+                                    <span>{link.name}</span>
+                                </Link>
+                            ))
+                        }
+                    </div>
+                    
+                    <div className="sticky max-h-screen bottom-0 bg-[#12100D] border-t border-slider/20 py-4 flex justify-center items-center">
+                    <h1>diyeijd</h1>
+
+                    </div>
 
 
             </aside>
@@ -147,10 +152,10 @@ export default function DashboardLayout({ children }: DashboardProps) {
                             <MdNotifications className="text-gray-400" />
                         </div>
 
-                        
+
                         <div
                         >
-                            <AssignTask/>
+                            <AssignTask />
                         </div>
                     </div>
                 </div>

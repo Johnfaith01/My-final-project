@@ -34,7 +34,7 @@ function RoomDashboard() {
         <div>
             <div
                 onClick={() => setSelectedRoom(null)}
-                className=" grid grid-cols-5 gap-3 p-5">
+                className=" grid grid-cols-2 md:grid-cols-5 gap-3 p-5">
                 {
                     roomDashboardStyles.map((room) => (
                         <Popover key={room.id}>

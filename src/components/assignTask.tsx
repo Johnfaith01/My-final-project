@@ -25,16 +25,16 @@ export function AssignTask() {
                     <Plus className="w-4 h-4" />
                     <p>ASSIGN TASK</p>
                 </DialogTrigger>
-                <DialogContent>
-                    <DialogHeader className="">
-                        <DialogTitle>Assign New Task</DialogTitle>
+                <DialogContent className="bg-[#12100D]">
+                    <DialogHeader>
+                        <DialogTitle className="text-white">Assign New Task</DialogTitle>
                     </DialogHeader>
                     <FieldGroup>
-                        <Field>
+                        <Field className="text-white">
                             <Label htmlFor="">TASK TITLE</Label>
-                            <Input id="" placeholder="e.g. Clean Larita suite" />
+                            <Input type="text" id="" placeholder="e.g. Clean Larita suite" />
                         </Field>
-                        <Field>
+                        <Field className="text-white">
                             <Label htmlFor="">ASSIGN TO</Label>
                             <NativeSelect>
                                 {
@@ -45,7 +45,7 @@ export function AssignTask() {
 
                             </NativeSelect>
                         </Field>
-                        <Field>
+                        <Field className="text-white">
                             <Label htmlFor="">PRIORITY</Label>
                             <NativeSelect>
                                 <NativeSelectOption>LOW</NativeSelectOption>
@@ -53,20 +53,20 @@ export function AssignTask() {
                                 <NativeSelectOption>HIGH</NativeSelectOption>
                             </NativeSelect>
                         </Field>
-                        <Field>
+                        <Field className="text-white">
                             <Label htmlFor="">DUE DATE</Label>
                             <DatePickerInput/>
                         </Field>
-                        <Field>
+                        <Field className="text-white">
                             <Label htmlFor="">NOTES</Label>
                             <Textarea placeholder="Additional details..."/>
                         </Field>
                     </FieldGroup>
-                    <DialogFooter>
+                    <DialogFooter className="bg-[#12100D]">
                         <DialogClose asChild>
-                            <Button variant="outline" className="cursor-pointer">CANCEL</Button>
+                            <Button variant="outline" className="cursor-pointer bg-black text-white border border-primary hover:text-black hover:bg-black/20">Cancel</Button>
                         </DialogClose>
-                        <Button type="submit" className="bg-slider cursor-pointer text-black py-4 px-3 hover:bg-slider/90 font-medium hover:text-white flex items-center">ASSIGN TASK</Button>
+                        <Button type="submit" className="bg-slider cursor-pointer text-black py-4 px-3 hover:bg-slider/90 font-medium hover:text-white flex items-center">Assign Task</Button>
                     </DialogFooter>
                 </DialogContent>
             </form>
