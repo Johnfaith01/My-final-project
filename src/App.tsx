@@ -15,6 +15,8 @@ import Tasks from './pages/dashboard/tasks'
 import HouseKeeping from './pages/dashboard/houseKeeping'
 import Reports from './pages/dashboard/reports'
 import Settings from './pages/dashboard/settings'
+import Booking from './pages/public/booking'
+import Rooms from './pages/public/rooms'
 
 function App(){
 
@@ -24,6 +26,8 @@ function App(){
       <Route path='/' element={<Homepage />} />
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
+      <Route path='/booking' element={<Booking />} />
+      <Route path='/rooms&suites' element={<Rooms />} />
       <Route path='/about' element={<About />} />
       <Route path='/overview' element={<OverviewPage />} />
       <Route path='/analytics' element={<Analytics />} />

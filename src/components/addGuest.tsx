@@ -17,9 +17,6 @@ import { DatePickerInput } from "./popover"
 import { Textarea } from "./ui/textarea"
 
 
-
-
-
 const floors = ["Any", "High", "Low", "Mid"]
 
 const statuses = ["Checked In", "Checked Out", "Pending"]

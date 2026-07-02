@@ -39,9 +39,10 @@ function isValidDate(date: Date | undefined) {
 interface DateProps {
   label?: string
   className?: string
+  onSelect?: (date: Date | undefined) => void
 }
 
-export function DatePickerInput({ label, className }: DateProps) {
+export function DatePickerInput({ label, className, onSelect }: DateProps) {
   const [open, setOpen] = React.useState(false)
   const [date, setDate] = React.useState<Date | undefined>(new Date())
   const [month, setMonth] = React.useState<Date | undefined>(date)
@@ -50,7 +51,7 @@ export function DatePickerInput({ label, className }: DateProps) {
   return (
     <Field className={className || ""}>
       <FieldLabel htmlFor="date-required">{label}</FieldLabel>
-      <InputGroup>
+      <InputGroup className="border border-primary">
         <InputGroupInput
           id="date-required"
           value={value}
@@ -61,6 +62,7 @@ export function DatePickerInput({ label, className }: DateProps) {
             if (isValidDate(date)) {
               setDate(date)
               setMonth(date)
+              onSelect?.(date)  // add this
             }
           }}
           onKeyDown={(e) => {
@@ -70,7 +72,6 @@ export function DatePickerInput({ label, className }: DateProps) {
             }
           }}
         />
-
         <InputGroupAddon align="inline-end">
           <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
@@ -94,13 +95,12 @@ export function DatePickerInput({ label, className }: DateProps) {
                   setDate(date)
                   setValue(formatDate(date))
                   setOpen(false)
+                  onSelect?.(date)  // add this
                 }}
               />
             </PopoverContent>
           </Popover>
         </InputGroupAddon>
-
-        
       </InputGroup>
     </Field>
   )

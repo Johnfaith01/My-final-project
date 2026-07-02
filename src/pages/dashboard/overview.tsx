@@ -18,14 +18,14 @@ function OverviewPage() {
   return (
     <DashboardLayout>
       <section className="flex flex-col gap-7">
-        <div className="grid grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           <OverviewCard title="OCCUPANCY RATE" value="82%" change="5% vs last week" Icon={FaArrowUp} />
           <OverviewCard title="ARRIVALS TODAY" value="6" change="3 VIP guests" Icon={FaArrowUp} />
           <OverviewCard title="REVENUE TODAY" value="₦1.2M" change="16% vs yesterday" Icon={FaArrowUp} />
           <OverviewCard title="PENDING TASKS" value="5" change="3 high priority" className="text-gray-400" />
         </div>
 
-        <div className="grid grid-cols-3 gap-5">
+        <div className="grid md:grid-cols-3 gap-5 w-full overflow-x-auto">
           <div className="col-span-2 border-[0.5px] border-primary pt-2 pb-10 bg-[#12100D]">
             <div className="flex items-center justify-between px-5 pb-2">
               <div className="text-sm">
@@ -39,7 +39,7 @@ function OverviewPage() {
             <Reservations reservations={reservation} />
           </div>
 
-          <div className="col-span-1 border border-primary bg-[#12100D] px-3 pb-2">
+          <div className="col-span-1 border w-full border-primary bg-[#12100D] px-3 pb-2">
             <div className="text-sm pt-1 py-3">
               <h1 className="text-lg font-serif text-[#F4EFE4]">Recent Activity</h1>
               <p className="text-gray-400">Last 3 hours</p>

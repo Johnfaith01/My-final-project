@@ -3,9 +3,10 @@
 
 function Booking() {
   return (
-    <div>
-        
-    </div>
+    <section className="min-h-screen">
+      
+
+    </section>
   )
 }
 

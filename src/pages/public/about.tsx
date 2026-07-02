@@ -5,6 +5,7 @@ import Philosophy from "@/components/about/philosophy"
 import Leadership from "@/components/about/leadership"
 import Awards from "@/components/about/awards"
 import Footer from "@/components/home/footer"
+import Nav from "@/components/home/Nav"
 
 
 
@@ -12,6 +13,7 @@ function About() {
   return (
     <>
       <div className="bg-[#0A0806]">
+        <Nav />
         <HeroSection />
         <Detail />
         <Amenities />

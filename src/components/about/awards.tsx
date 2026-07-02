@@ -1,7 +1,13 @@
 import { FaArrowRightLong } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Awards() {
+    const nav = useNavigate()
+
+    const viewRooms = ()=>{
+        nav("/rooms&suites")
+    }
     return (
         <section className="bg-[#12100D]">
             <div className="w-[90%] mx-auto text-center flex flex-col md:flex md:flex-row md:text-start justify-between items-center gap-5 py-13">
@@ -69,7 +75,7 @@ export default function Awards() {
 
                 
                     <div className="flex flex-col gap-4 md:flex-row">
-                        <button className="bg-[#B8924A] text-white px-4 py-2 md:px-5 md:py-3 w-max rounded-md text-sm md:text-base cursor-pointer">VIEW ROOMS</button>
+                        <button onClick={viewRooms} className="bg-[#B8924A] text-white px-4 py-2 md:px-5 md:py-3 w-max rounded-md text-sm md:text-base cursor-pointer">VIEW ROOMS</button>
                         <button className="text-white border border-primary rounded-md px-4 py-2 md:px-5 md:py-3 w-max flex items-center gap-2 text-sm md:text-base cursor-pointer">
                             <span>RESERVE NOW</span><FaArrowRightLong/>
                         </button>

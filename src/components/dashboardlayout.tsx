@@ -96,7 +96,7 @@ export default function DashboardLayout({ children }: DashboardProps) {
         <section className="grid grid-cols-5">
             <aside className="col-span-1 bg-[#12100D] border-r border-slider/20 text-gray-400 pt-4 h-screen overflow-y-auto sticky top-0">
 
-                <div className="flex items-centergap-4 rounded-md py-2 px-5 text-black bg-slider gap-4 mb-7 mx-4">
+                <div className="flex items-centergap-4 rounded-md py-2 px-5 text-black bg-slider gap-4 my-2 mx-4">
                     <img src="/larita.png" alt="" className="w-5" />
                     <h1 className="font-bold">LARITA</h1>
                 </div>
@@ -117,8 +117,11 @@ export default function DashboardLayout({ children }: DashboardProps) {
                         }
                     </div>
                     
-                    <div className="sticky max-h-screen bottom-0 bg-[#12100D] border-t border-slider/20 py-4 flex justify-center items-center">
-                    <h1>diyeijd</h1>
+                    <div className="sticky max-h-screen bottom-0 bg-[#12100D] border-t border-slider/20 py-3 flex justify-center items-center text-sm">
+                    <div className="bg-[#3b362b] p-3">
+                        <h1 className="text-white">Adaeze Okonkwo</h1>
+                        <p>General Manager</p>
+                    </div>
 
                     </div>
 
