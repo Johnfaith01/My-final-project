@@ -26,7 +26,7 @@ function App(){
       <Route path='/' element={<Homepage />} />
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
-      <Route path='/booking' element={<Booking />} />
+      <Route path='/booking/:slug' element={<Booking />} />
       <Route path='/rooms&suites' element={<Rooms />} />
       <Route path='/about' element={<About />} />
       <Route path='/overview' element={<OverviewPage />} />
@@ -40,7 +40,7 @@ function App(){
       <Route path='/housekeeping' element={<HouseKeeping />} />
       <Route path='/reports' element={<Reports />} />
       <Route path='/settings' element={<Settings />} />
-      <Route path="/view/:category" element={<ViewPage />} />
+      <Route path="/view/:slug" element={<ViewPage />} />
     </Routes>
     </>
   )

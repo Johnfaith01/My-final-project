@@ -33,6 +33,7 @@ function Hotels() {
                                         shortDescription={hotels.shortDescription}
                                         amenities={hotels.amenities}
                                         rating={hotels.rating}
+                                        slug={hotels.slug}
                                     />
                                 </CarouselItem>
                             ))

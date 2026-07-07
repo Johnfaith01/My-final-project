@@ -11,11 +11,12 @@ interface RoomType {
     pricePerNight: number
     maxGuest: number
     bedType: string
+    slug?: string
 }
-export default function RoomCard({ images, name, category, shortDesc, rating, pricePerNight, maxGuest, bedType }: RoomType) {
+export default function RoomCard({ images, slug, name, category, shortDesc, rating, pricePerNight, maxGuest, bedType }: RoomType) {
     return (
-        <Link to={`/view/${category}`}>
-            <div className="bg-[#12100D] my-2 relative">
+        <Link to={`/view/${slug}`}>
+            <div className="bg-[#12100D] my-2 relative transition-all duration-300 hover:-translate-y-1 hover:border-[#D4AF37] hover:shadow-xl">
                 <div className="">
                     <img src={images[0]} alt={name} className="object-cover h-60 w-full" />
                 </div>

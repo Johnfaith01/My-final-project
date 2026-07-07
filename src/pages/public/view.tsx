@@ -2,9 +2,6 @@ import hotel from "../../mocks/hotel-rooms.json"
 import { useNavigate, useParams } from "react-router-dom"
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { Badge } from "../../components/ui/badge"
-import { DatePickerInput } from "../../components/popover";
-import { NativeSelect, NativeSelectOption } from "../../components/ui/native-select";
-import { Input } from "../../components/ui/input";
 import { FaStar } from "react-icons/fa";
 import { useState } from "react";
 import { Bed, Ruler, Users, Building, ShowerHead } from "lucide-react";
@@ -12,9 +9,9 @@ import { Bed, Ruler, Users, Building, ShowerHead } from "lucide-react";
 
 
 function ViewPage() {
-    const { category } = useParams()
+    const { slug } = useParams()
 
-    const hotels = hotel.find((hotels) => hotels.category === category)
+    const hotels = hotel.find((hotels) => hotels.slug === slug)
 
     if (!hotels) {
         return (
@@ -33,26 +30,14 @@ function ViewPage() {
         navigate("/")
     }
 
-    const [checkIn, setCheckIn] = useState<Date | undefined>()
-    const [checkOut, setCheckOut] = useState<Date | undefined>()
-    const [nights, setNights] = useState(0)
-
-    const calculateNights = (start: Date | undefined, end: Date | undefined) => {
-        if (!start || !end) return
-        const diff = end.getTime() - start.getTime()
-        const result = Math.ceil(diff / (1000 * 60 * 60 * 24))
-        setNights(result > 0 ? result : 0)
+    const booking = useNavigate()
+    const handleBooking = ()=>{
+        if (!slug) return
+        booking(`/booking/${slug}`)
     }
 
-    const handleCheckIn = (date: Date | undefined) => {
-        setCheckIn(date)
-        calculateNights(date, checkOut)
-    }
 
-    const handleCheckOut = (date: Date | undefined) => {
-        setCheckOut(date)
-        calculateNights(checkIn, date)
-    }
+   
     return (
 
 
@@ -76,7 +61,7 @@ function ViewPage() {
 
             </div>
 
-            <div className="grid md:grid-cols-[70%_30%] gap-4 my-10">
+            <div className="grid md:grid-cols-[70%_30%] gap-4 my-10 items-center">
                 <div className="flex flex-col gap-2">
                     <h1 className="font-semibold text-[#B8924A] uppercase">{hotels.category} · Floor {hotels.floor}</h1>
 
@@ -159,7 +144,7 @@ function ViewPage() {
                 </div>
 
 
-                <div className="flex flex-col gap-3 p-5 bg-[#12100D] border border-primary shadow-2xl rounded-sm  text-white md:w-full">
+                <div className="flex flex-col gap-3 p-5 bg-[#12100D] border border-primary shadow-2xl rounded-sm  text-white h-fit md:w-full text-center md:text-start">
                     <div>
                         <h1 className="font-bold text-xl">₦{new Intl.NumberFormat("en-NG").format(hotels.pricePerNight)}</h1>
                         <h1 className="text-[#beb08d]">PER NIGHT</h1>
@@ -167,7 +152,7 @@ function ViewPage() {
 
                     <hr className="border border-primary"/>
 
-                    <div>
+                    {/* <div>
                         <DatePickerInput label="Check In" className="w-full" onSelect={handleCheckIn} />
                     </div>
 
@@ -197,10 +182,12 @@ function ViewPage() {
                                 className="w-full border border-primary"
                             />
                         </form>
-                    </div>
+                    </div> */}
 
-                    <button className="px-5 py-2 border-none rounded-md bg-[#B8924A] text-white cursor-pointer hover:bg-[#9a7a3d] duration-300">RESERVE NOW</button>
-                    <p className="text-sm text-white">No charge until arrival · Free cancellation</p>
+                    <button
+                    onClick={handleBooking}
+                    className="px-5 py-2 border-none rounded-md bg-[#B8924A] text-white cursor-pointer hover:bg-[#9a7a3d] duration-300">RESERVE NOW</button>
+                    <p className="text-xs text-[#beb08d] text-center">No charge until arrival · Free cancellation</p>
 
                 </div>
             </div>

@@ -31,7 +31,7 @@ function Room() {
                             <Button
                                 key={cat}
                                 onClick={() => setCategory(cat)}
-                                className={`flex justify-center items-center py-2 px-3 text-center border border-primary cursor-pointer rounded-none ${category === cat ? "bg-[#B8924A] text-white" : "bg-[#12100D]"
+                                className={`flex justify-center items-center py-2 px-3 text-center border border-primary cursor-pointer rounded-md hover:text-slider ${category === cat ? "bg-[#B8924A] text-white" : "bg-[#12100D]"
                                     }`}
                             >
                                 {cat}
@@ -63,10 +63,11 @@ function Room() {
                                 pricePerNight={room.pricePerNight}
                                 maxGuest={room.maxGuests}
                                 bedType={room.bedType}
+                                slug={room.slug}
                             />
                         ))
                     ) : (
-                        <p className="text-center min-h-screen">No rooms found.</p>
+                        <p className="text-slider min-h-screen text-center col-span-3 text-xl">No rooms found.</p>
                     )}
                 </div>
 

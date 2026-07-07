@@ -6,4 +6,5 @@ export interface HotelType {
     shortDescription: string;
     amenities: string[];
     rating: number;
+    slug?: string
 }

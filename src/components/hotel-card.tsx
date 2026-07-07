@@ -5,14 +5,14 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { FaStar } from "react-icons/fa";
 
 
-export default function HotelCard({ pricePerNight, category, shortDescription, amenities, rating, images }: HotelType) {
+export default function HotelCard({ pricePerNight, category, slug, shortDescription, amenities, rating, images }: HotelType) {
     return (
 
         //VIEW HOTEL DETAILS
-        <Link to={`/view/${category}`}>
+        <Link to={`/view/${slug}`}>
             <section className="mx-auto bg-[#12100D] flex flex-col md:grid md:grid-cols-2">
                 <div className="w-full h-64 md:h-full">
-                    <img src={images[0]} alt={category} className="w-full h-full object-cover" />
+                    <img src={images[0]} alt={slug} className="w-full h-full object-cover" />
                 </div>
 
                 <div className="flex flex-col gap-3 px-5 py-8 justify-center w-[90%] mx-auto">
@@ -42,7 +42,6 @@ export default function HotelCard({ pricePerNight, category, shortDescription, a
                         </Link>
                     </div>
                 </div>
-
             </section>
         </Link>
     )

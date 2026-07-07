@@ -62,7 +62,7 @@ export function DatePickerInput({ label, className, onSelect }: DateProps) {
             if (isValidDate(date)) {
               setDate(date)
               setMonth(date)
-              onSelect?.(date)  // add this
+              onSelect?.(date)
             }
           }}
           onKeyDown={(e) => {

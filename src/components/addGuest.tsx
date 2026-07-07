@@ -36,44 +36,48 @@ export default function AddGuest() {
                     <FieldGroup>
                         <Field className="text-white">
                             <Label htmlFor="">GUEST NAME</Label>
-                            <Input type="text" id="" placeholder="Guest name" />
+                            <Input type="text" id="" placeholder="Guest name" className="border border-primary"/>
                         </Field>
                         <Field className="text-white">
                             <Label htmlFor="">EMAIL</Label>
-                            <Input type="email" placeholder="name@email.com"/>
+                            <Input type="email" placeholder="name@email.com" className="border border-primary"/>
                         </Field>
                         <Field className="text-white">
                             <Label htmlFor="">PHONE NUMBER</Label>
-                            <Input type="tel" placeholder="+234 807 777 7282"/>
+                            <Input type="tel" placeholder="+234 807 777 7282" className="border border-primary"/>
                         </Field>
                         <Field className="text-white">
                             <Label htmlFor="">NATIONALITY</Label>
-                            <Input type="text" placeholder="e.g Nigerian"/>
+                            <Input type="text" placeholder="e.g Nigerian" className="border border-primary"/>
                         </Field>
                         <Field className="text-white">
                             <Label htmlFor="">DATE OF BIRTH</Label>
-                            <DatePickerInput/>
-                        </Field>
-                        <Field className="text-white">
-                            <Label htmlFor="">GENDER</Label>
-                            <NativeSelect>
-                                    <NativeSelectOption>Male</NativeSelectOption>
-                                    <NativeSelectOption>Female</NativeSelectOption>
-                            </NativeSelect>
+                            <DatePickerInput />
                         </Field>
                         <Field className="text-white">
                             <Label htmlFor="">ADDRESS</Label>
-                            <Input type="text" placeholder="e.g 23 Adeola ofolu Street"/>
+                            <Input type="text" placeholder="e.g 23 Adeola ofolu Street" className="border border-primary"/>
                         </Field>
+
+                        <Field className="text-white">
+                            <Label>GUESTS</Label>
+                            <NativeSelect className="w-full">
+                                <NativeSelectOption>1 Guest</NativeSelectOption>
+                                <NativeSelectOption>2 Guests</NativeSelectOption>
+                                <NativeSelectOption>3 Guests</NativeSelectOption>
+                                <NativeSelectOption>4 Guests</NativeSelectOption>
+                            </NativeSelect>
+                        </Field>
+
                         <Field className="text-white">
                             <Label htmlFor="">TOTAL STAYS(DAYS)</Label>
-                            <Input type="number" placeholder="10"/>
+                            <Input type="number" placeholder="10" className="border border-primary"/>
                         </Field>
                         <Field className="text-white">
                             <Label htmlFor="">STATUS</Label>
                             <NativeSelect>
                                 {
-                                    statuses.map((status)=>(
+                                    statuses.map((status) => (
                                         <NativeSelectOption key={status}>{status}</NativeSelectOption>
                                     ))
                                 }
@@ -81,18 +85,18 @@ export default function AddGuest() {
                         </Field>
                         <Field className="text-white">
                             <Label htmlFor="">CHECK IN DATE</Label>
-                            <DatePickerInput/>
+                            <DatePickerInput />
                         </Field>
                         <Field className="text-white">
                             <Label htmlFor="">CHECK OUT DATE</Label>
-                            <DatePickerInput/>
+                            <DatePickerInput />
                         </Field>
-                            <Label htmlFor="" className="flex justify-center text-white">PREFERENCES</Label>
+                        <Label htmlFor="" className="flex justify-center text-white">PREFERENCES</Label>
                         <Field className="text-white">
                             <Label>FLOOR</Label>
                             <NativeSelect>
                                 {
-                                    floors.map((floor)=>(
+                                    floors.map((floor) => (
                                         <NativeSelectOption key={floor}>{floor}</NativeSelectOption>
                                     ))
                                 }
@@ -101,14 +105,14 @@ export default function AddGuest() {
                         <Field className="text-white">
                             <Label htmlFor="">PILLOW TYPE</Label>
                             <NativeSelect>
-                            {["Any", "Soft", "Firm"].map((pillow)=>(
-                                <NativeSelectOption key={pillow}>{pillow}</NativeSelectOption>
-                            ))}
+                                {["Any", "Soft", "Firm"].map((pillow) => (
+                                    <NativeSelectOption key={pillow}>{pillow}</NativeSelectOption>
+                                ))}
                             </NativeSelect>
                         </Field>
                         <Field className="text-white">
                             <Label>Special Requirements</Label>
-                            <Textarea />
+                            <Textarea className="border border-primary" />
                         </Field>
                     </FieldGroup>
                     <DialogFooter className="bg-[#12100D]">

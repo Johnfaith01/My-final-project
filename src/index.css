@@ -206,3 +206,7 @@
 ::-webkit-scrollbar{
   display: none;
 }
+
+.inputform::placeholder{
+  color: #beb08d;
+}
