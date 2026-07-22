@@ -30,7 +30,7 @@ function Homepage() {
                 <Review />
                 <About />
                 <Video />
-                <Footer/>
+                <Footer />
             </div>
         </>
 

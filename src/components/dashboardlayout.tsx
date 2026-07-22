@@ -94,6 +94,7 @@ export default function DashboardLayout({ children }: DashboardProps) {
 
     return (
         <section className="grid grid-cols-5">
+            {/* ASIDE */}
             <aside className="col-span-1 bg-[#12100D] border-r border-slider/20 text-gray-400 pt-4 h-screen overflow-y-auto sticky top-0">
 
                 <div className="flex items-centergap-4 rounded-md py-2 px-5 text-black bg-slider gap-4 my-2 mx-4">
@@ -127,7 +128,8 @@ export default function DashboardLayout({ children }: DashboardProps) {
 
 
             </aside>
-
+            
+            {/* MAIN CONTENT */}
             <main className="col-span-4 h-screen overflow-y-scroll">
                 <div className="flex items-center justify-between px-5 bg-[#12100D]">
                     <div className=" py-2">

@@ -44,7 +44,7 @@ export default function Settings() {
 
       {/* Hotel Info */}
       {activeTab === "Hotel Info" && (
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-6">
           <div className="bg-[#12100D] border border-primary p-6 flex flex-col gap-4">
             <h2 className="text-white font-serif text-lg">Hotel Information</h2>
             {[

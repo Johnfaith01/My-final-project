@@ -67,7 +67,7 @@ const stats = [
   },
 ]
     return(
-         <div className="grid grid-cols-4 gap-4 mb-6">
+         <div className="grid md:grid-cols-4 gap-4 mb-6">
       {stats.map((stat) => (
         <div
           key={stat.label}

@@ -1,10 +1,16 @@
 
 import { NativeSelect, NativeSelectOption } from "../ui/native-select";
-import hotels from "../../mocks/hotel-rooms.json"
 import { DatePickerInput } from "../popover";
+import { useQuery } from "@tanstack/react-query";
+import { HotelroomServices } from "@/services/hotelRoom-service";
 
 
 export default function Availability() {
+
+    const { data: rooms } = useQuery({
+            queryKey: ["rooms"],
+            queryFn: () => HotelroomServices.getAllRooms()
+        })
 
     return (
         <section className="min-h-[20vh] flex md:">
@@ -34,8 +40,8 @@ export default function Availability() {
                     <NativeSelect className="w-full md:w-50">
                         <NativeSelectOption value="">Type of room</NativeSelectOption>
                        {
-                        hotels.map((hotel)=>(
-                            <NativeSelectOption key={hotel.category} value={hotel.category}>{hotel.category}</NativeSelectOption>
+                        rooms?.map((room)=>(
+                            <NativeSelectOption key={room._id} value={room.category}>{room.category}</NativeSelectOption>
                         ))
                        }
                         

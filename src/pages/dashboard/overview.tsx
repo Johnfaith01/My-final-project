@@ -18,6 +18,7 @@ function OverviewPage() {
   return (
     <DashboardLayout>
       <section className="flex flex-col gap-7">
+        {/* OVERVIEW CARD */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           <OverviewCard title="OCCUPANCY RATE" value="82%" change="5% vs last week" Icon={FaArrowUp} />
           <OverviewCard title="ARRIVALS TODAY" value="6" change="3 VIP guests" Icon={FaArrowUp} />
@@ -26,7 +27,7 @@ function OverviewPage() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-5 w-full overflow-x-auto">
-          <div className="col-span-2 border-[0.5px] border-primary pt-2 pb-10 bg-[#12100D]">
+          <div className="col-span-1 md:col-span-2 border-[0.5px] border-primary pt-2 pb-10 bg-[#12100D]">
             <div className="flex items-center justify-between px-5 pb-2">
               <div className="text-sm">
                 <h1 className="text-lg font-serif text-[#F4EFE4]">Recent Reservations</h1>

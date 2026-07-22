@@ -27,6 +27,7 @@ const statusStyles: Record<string, string> = {
 
 function Reservations({ reservations }: ReservationsProps) {
     return (
+        <div className="w-full overflow-x-auto">
             <Table>
                 <TableHeader>
                     <TableRow className="text-xs">
@@ -53,7 +54,8 @@ function Reservations({ reservations }: ReservationsProps) {
                     }
                 </TableBody>
             </Table>
-        
+        </div>
+
     )
 }
 

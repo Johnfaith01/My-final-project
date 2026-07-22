@@ -4,8 +4,9 @@ import { Badge } from "./ui/badge";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaStar } from "react-icons/fa";
 
+type HotelCardProps = Pick<HotelType, "pricePerNight" | "category" | "slug" | "shortDescription" | "amenities" | "rating" | "images">
 
-export default function HotelCard({ pricePerNight, category, slug, shortDescription, amenities, rating, images }: HotelType) {
+export default function HotelCard({ pricePerNight, category, slug, shortDescription, amenities, rating, images }: HotelCardProps) {
     return (
 
         //VIEW HOTEL DETAILS
@@ -28,7 +29,7 @@ export default function HotelCard({ pricePerNight, category, slug, shortDescript
                         ))}
                     </div>
                     <h1 className="flex items-center gap-1">
-                        Rating: {rating}
+                        Rating: {rating ?? "No ratings yet"}
                         <span className="flex gap-0.5 text-yellow-400"><FaStar /><FaStar /><FaStar /><FaStar /></span>
                     </h1>
                     <div className="flex gap-4">

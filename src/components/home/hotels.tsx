@@ -1,5 +1,4 @@
 
-import hotel from "../../mocks/hotel-rooms.json"
 import {
     Carousel,
     CarouselContent,
@@ -8,8 +7,32 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 import HotelCard from "../hotel-card"
+import { useQuery } from "@tanstack/react-query"
+import { HotelroomServices } from "@/services/hotelRoom-service"
 
 function Hotels() {
+
+    const { data: rooms, error, isLoading } = useQuery({
+        queryKey: ["rooms"],
+        queryFn: () => HotelroomServices.getAllRooms()
+    })
+
+    if (isLoading) {
+        return (
+            <div>
+                <h1>Rooms Loading...</h1>
+            </div>
+        )
+    }
+
+    if (error) {
+        return (
+            <div>
+                <h1>{error.message}</h1>
+            </div>
+        )
+    }
+
     return (
 
         <section className="flex flex-col justify-center gap-5 mt-20 md:-mb-20">
@@ -22,18 +45,18 @@ function Hotels() {
                 <Carousel className="w-[80%] mx-auto md:w-[90%]">
                     <CarouselContent>
                         {
-                            hotel.map((hotels, i) => (
-                                <CarouselItem key={i} className="basis-full">
+                            rooms?.map((room) => (
+                                <CarouselItem key={room._id} className="basis-full">
 
                                     <HotelCard
 
-                                        images={hotels.images}
-                                        pricePerNight={hotels.pricePerNight}
-                                        category={hotels.category}
-                                        shortDescription={hotels.shortDescription}
-                                        amenities={hotels.amenities}
-                                        rating={hotels.rating}
-                                        slug={hotels.slug}
+                                        images={room.images}
+                                        pricePerNight={room.pricePerNight}
+                                        category={room.category}
+                                        shortDescription={room.shortDescription}
+                                        amenities={room.amenities}
+                                        rating={room.rating}
+                                        slug={room.slug}
                                     />
                                 </CarouselItem>
                             ))

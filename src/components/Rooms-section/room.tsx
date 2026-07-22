@@ -1,21 +1,42 @@
 import RoomCard from "@/components/room-card"
-import rooms from "@/mocks/hotel-rooms.json"
 import { useState } from "react"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
+import { useQuery } from "@tanstack/react-query"
+import { HotelroomServices } from "@/services/hotelRoom-service"
 
 function Room() {
-    const [searchTerm, setSearchTerm] = useState("")
+    const { data: rooms, error, isLoading } = useQuery({
+        queryKey: ["rooms"],
+        queryFn: () => HotelroomServices.getAllRooms()
+    })
 
+
+    const [searchTerm, setSearchTerm] = useState("")
     const [category, setCategory] = useState("All")
 
-    const categories = ["All", ...new Set(rooms.map((room) => room.category))]
+    if (isLoading) {
+        return (
+            <div>
+                <h1>Rooms Loading...</h1>
+            </div>
+        )
+    }
 
-    const filteredRooms = rooms.filter((room) =>
-        room.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+    if (error) {
+        return (
+            <div>
+                <h1>{error.message}</h1>
+            </div>
+        )
+    }
+
+    const categories = ["All", ...new Set(rooms?.map((room) => room.category))]
+
+    const filteredRooms = rooms?.filter((room) =>
+        room.roomName.toLowerCase().includes(searchTerm.toLowerCase()) &&
         (category === "All" || room.category === category)
     )
-    
 
     return (
         <section className="w-[97%] mx-auto pt-22">
@@ -31,8 +52,9 @@ function Room() {
                             <Button
                                 key={cat}
                                 onClick={() => setCategory(cat)}
-                                className={`flex justify-center items-center py-2 px-3 text-center border border-primary cursor-pointer rounded-md hover:text-slider ${category === cat ? "bg-[#B8924A] text-white" : "bg-[#12100D]"
-                                    }`}
+                                className={`flex justify-center items-center py-2 px-3 text-center border border-primary cursor-pointer rounded-md hover:text-slider ${
+                                    category === cat ? "bg-[#B8924A] text-white" : "bg-[#12100D]"
+                                }`}
                             >
                                 {cat}
                             </Button>
@@ -46,17 +68,15 @@ function Room() {
                         placeholder="Search room by name..."
                         className="border border-primary rounded-md px-4 py-2 w-full max-w-md"
                     />
-
-
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-3">
-                    {filteredRooms.length > 0 ? (
+                    {filteredRooms && filteredRooms.length > 0 ? (
                         filteredRooms.map((room) => (
                             <RoomCard
-                                key={room.id}
+                                key={room._id}
                                 images={room.images}
-                                name={room.name}
+                                name={room.roomName}
                                 category={room.category}
                                 shortDesc={room.shortDescription}
                                 rating={room.rating}
@@ -67,12 +87,12 @@ function Room() {
                             />
                         ))
                     ) : (
-                        <p className="text-slider min-h-screen text-center col-span-3 text-xl">No rooms found.</p>
+                        <p className="text-slider min-h-screen text-center col-span-3 text-xl">
+                            No rooms found.
+                        </p>
                     )}
                 </div>
-
             </div>
-
         </section>
     )
 }

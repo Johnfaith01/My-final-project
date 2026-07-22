@@ -13,7 +13,7 @@ function Reports() {
                     <p className='text-gray-400 text-sm'>Generate and download hotel reports</p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4">
                     <ReportsCard 
                     Icon="📊"
                     header="Occupancy Report"

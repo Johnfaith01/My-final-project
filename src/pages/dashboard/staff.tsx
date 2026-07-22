@@ -8,21 +8,48 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
-import staff from "@/mocks/staff.json"
+import { StaffService } from "@/services/staff-service"
+import { useQuery } from "@tanstack/react-query"
 
 const statusStyles: Record<string, string> = {
-    "On Duty": "bg-green-500/10 text-green-500 border border-green-500/20",
-    "On Break": "bg-amber-500/10 text-amber-500 border border-amber-500/20",
-    "Off Duty": "bg-red-500/10   text-red-500   border border-red-500/20",
+    "on duty": "bg-green-500/10 text-green-500 border border-green-500/20",
+    "off duty": "bg-red-500/10 text-red-500 border border-red-500/20",
+}
+
+const statusLabels: Record<string, string> = {
+    "on duty": "On Duty",
+    "off duty": "Off Duty",
 }
 
 function Staff() {
+
+    const { data: staffs, error, isLoading } = useQuery({
+        queryKey: ["staffs"],
+        queryFn: () => StaffService.getAllStaff()
+    })
+
+    if (isLoading) {
+        return (
+            <DashboardLayout>
+                <p className="text-gray-400 text-sm flex items-center justify-center min-h-[90vh]">Loading staff...</p>
+            </DashboardLayout>
+        )
+    }
+
+    if (error) {
+        return (
+            <DashboardLayout>
+                <p className="text-red-500 text-sm flex items-center justify-center min-h-[90vh]">Unable to load staff.</p>
+            </DashboardLayout>
+        )
+    }
+
     return (
         <DashboardLayout>
             <div className="text-white mb-7 flex justify-between">
                 <div>
                     <h1 className='text-white text-2xl'>Staff Management</h1>
-                    <p className='text-gray-400 text-sm'>7 active staff members</p>
+                    <p className='text-gray-400 text-sm'>{staffs?.length ?? 0} active staff members</p>
                 </div>
 
                 <div>
@@ -44,19 +71,29 @@ function Staff() {
                     </TableHeader>
                     <TableBody>
                         {
-                            staff.map((member, i) => (
-                                <TableRow key={member.name + i} className="cursor-pointer">
-                                    <TableCell className="text-xs text-[#F4EFE4]">{member.name}</TableCell>
-                                    <TableCell className="text-xs text-[#F4EFE4]">{member.role}</TableCell>
-                                    <TableCell className="text-xs text-[#F4EFE4]">{member.dept}</TableCell>
-                                    <TableCell className="text-xs text-[#F4EFE4]">{member.shift}</TableCell>
-                                    <TableCell className="text-xs text-[#F4EFE4]">{member.tasks}</TableCell>
-                                    <TableCell><span className={`text-xs text-[#F4EFE4] px-3 py-1 rounded-sm ${statusStyles[member.status] ?? "bg-gray-500/10 text-gray-500"}`}>{member.status}</span></TableCell>
+                            staffs && staffs.length > 0 ? (
+                                staffs.map((staff) => (
+                                    <TableRow key={staff._id} className="cursor-pointer">
+                                        <TableCell className="text-xs text-[#F4EFE4]">{staff.name}</TableCell>
+                                        <TableCell className="text-xs text-[#F4EFE4]">{staff.staffRole}</TableCell>
+                                        <TableCell className="text-xs text-[#F4EFE4]">{staff.dept}</TableCell>
+                                        <TableCell className="text-xs text-[#F4EFE4] capitalize">{staff.shift}</TableCell>
+                                        <TableCell className="text-xs text-[#F4EFE4]">—</TableCell>
+                                        <TableCell>
+                                            <span className={`text-xs px-3 py-1 rounded-sm ${statusStyles[staff.status] ?? "bg-gray-500/10 text-gray-500"}`}>
+                                                {statusLabels[staff.status] ?? staff.status}
+                                            </span>
+                                        </TableCell>
+                                    </TableRow>
+                                ))
+                            ) : (
+                                <TableRow>
+                                    <TableCell colSpan={6} className="text-center text-gray-400 text-sm py-6">
+                                        No staff found.
+                                    </TableCell>
                                 </TableRow>
-                            ))
+                            )
                         }
-
-
                     </TableBody>
                 </Table>
             </div>

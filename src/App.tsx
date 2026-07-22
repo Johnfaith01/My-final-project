@@ -17,6 +17,7 @@ import Reports from './pages/dashboard/reports'
 import Settings from './pages/dashboard/settings'
 import Booking from './pages/public/booking'
 import Rooms from './pages/public/rooms'
+import ContactPage from './components/contactPage'
 
 function App(){
 
@@ -29,6 +30,7 @@ function App(){
       <Route path='/booking/:slug' element={<Booking />} />
       <Route path='/rooms&suites' element={<Rooms />} />
       <Route path='/about' element={<About />} />
+      <Route path='/contact' element={<ContactPage />} />
       <Route path='/overview' element={<OverviewPage />} />
       <Route path='/analytics' element={<Analytics />} />
       <Route path='/reservation' element={<Reservation />} />

@@ -7,7 +7,7 @@ interface RoomType {
     name: string
     category: string
     shortDesc: string
-    rating: number
+    rating?: number
     pricePerNight: number
     maxGuest: number
     bedType: string
