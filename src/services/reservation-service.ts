@@ -1,5 +1,5 @@
 import apiClient from "@/api/apiClient";
-import type { Reservation } from "@/types/reservation-type";
+import type { CreateReservationPayload, Reservation } from "@/types/reservation-type";
 
 
 export class ReservationServices{
@@ -7,4 +7,14 @@ export class ReservationServices{
         const {data} = await apiClient.get("/reservations")
         return data.reservations
     }
+
+    static async createReservation(payload: CreateReservationPayload): Promise<Reservation> {
+        const { data } = await apiClient.post("/create/reservation", payload)
+        return data.reservation
+    }
+
+    static async getMyReservations(userId: string): Promise<Reservation[]> {
+    const { data } = await apiClient.get(`/reservations/user/${userId}`)
+    return data.reservations
+}
 }

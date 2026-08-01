@@ -39,14 +39,23 @@ function isValidDate(date: Date | undefined) {
 interface DateProps {
   label?: string
   className?: string
+  defaultValue?: Date
   onSelect?: (date: Date | undefined) => void
 }
 
-export function DatePickerInput({ label, className, onSelect }: DateProps) {
+export function DatePickerInput({ label, className, defaultValue, onSelect }: DateProps) {
   const [open, setOpen] = React.useState(false)
-  const [date, setDate] = React.useState<Date | undefined>(new Date())
+  const [date, setDate] = React.useState<Date | undefined>(defaultValue ?? new Date())
   const [month, setMonth] = React.useState<Date | undefined>(date)
-  const [value, setValue] = React.useState(formatDate(date))
+  const [value, setValue] = React.useState(formatDate(defaultValue ?? new Date()))
+
+  React.useEffect(() => {
+    if (defaultValue && isValidDate(defaultValue)) {
+      setDate(defaultValue)
+      setMonth(defaultValue)
+      setValue(formatDate(defaultValue))
+    }
+  }, [defaultValue])
 
   return (
     <Field className={className || ""}>
@@ -95,7 +104,7 @@ export function DatePickerInput({ label, className, onSelect }: DateProps) {
                   setDate(date)
                   setValue(formatDate(date))
                   setOpen(false)
-                  onSelect?.(date)  // add this
+                  onSelect?.(date)
                 }}
               />
             </PopoverContent>

@@ -7,4 +7,9 @@ export class HousekeepingService {
         const { data } = await apiClient.get("/housekeepings")
         return data.housekeepingTasks
     }
+
+    static async updateStatus(id: string, status: string): Promise<Housekeeping> {
+        const { data } = await apiClient.post(`/update/housekeeping/${id}`, { status })
+        return data.housekeeping
+    }
 }

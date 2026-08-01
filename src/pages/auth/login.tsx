@@ -1,19 +1,19 @@
-
 import { Link, useNavigate } from "react-router-dom"
 import { formOptions, useForm } from "@tanstack/react-form"
 import { Input } from "@/components/ui/input"
 import { useState } from "react"
 import { toast } from "sonner"
+import { guestsService } from "@/services/guest-service"
+import { useAuth } from "@/context/AuthContext"
 
 interface LoginProps {
     email: string
     password: string
 }
 
-
-
 function Login() {
 
+    const { login } = useAuth()
     const [loading, setLoading] = useState<boolean>(false)
     const navigate = useNavigate()
 
@@ -25,27 +25,32 @@ function Login() {
 
     const Form = useForm({
         ...formOpt,
-        onSubmit: ({ value }) => {
+        onSubmit: async ({ value }) => {
             setLoading(true)
             try {
-                toast.success('Login Succesful')
-                setTimeout(() => navigate("/"), 2000)
-                console.log({ value })
-            } catch (error) {
-                console.log(error)
+                const res = await guestsService.login({
+                    email: value.email,
+                    password: value.password,
+                })
+
+                if (res.success) {
+                    login(res.user, res.token)
+                    toast.success('Login Successful')
+                    setTimeout(() => navigate("/"), 1500)
+                } else {
+                    toast.error('Login failed')
+                }
+            } catch (error: any) {
+                toast.error(error.response?.data?.message || 'Invalid email or password')
             } finally {
-
-                setTimeout(() => { setLoading(false) }, 2000)
-
+                setLoading(false)
             }
         }
     })
 
-
     return (
 
         <section className="min-h-screen flex items-center justify-center bg-[url('/login-img.jpg')] bg-cover py-20">
-
 
             <div className="w-full max-w-md px-10 py-12 border outline-none border-stone-200 shadow rounded-2xl bg-black/50 backdrop-blur-[5px]">
                 <div className="mb-8 text-center">
@@ -147,9 +152,11 @@ function Login() {
                         </button>
                     </div>
 
-                    <button 
-                    type="submit" 
-                    className="w-full bg-[#B8924A] hover:bg-[#a07a38] text-white py-3 rounded-md font-semibold uppercase text-sm cursor-pointer border-none mt-2">
+                    <button
+                        type="submit"
+                        disabled={loading}
+                        className="w-full bg-[#B8924A] hover:bg-[#a07a38] text-white py-3 rounded-md font-semibold uppercase text-sm cursor-pointer border-none mt-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
                         {loading ? "Please wait..." : "Sign In"}
                     </button>
 

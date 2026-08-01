@@ -17,7 +17,7 @@ function Room() {
 
     if (isLoading) {
         return (
-            <div>
+            <div className="text-red-500 text-sm flex items-center justify-center min-h-screen">
                 <h1>Rooms Loading...</h1>
             </div>
         )
@@ -25,7 +25,7 @@ function Room() {
 
     if (error) {
         return (
-            <div>
+            <div className="text-red-500 text-sm flex items-center justify-center min-h-screen">
                 <h1>{error.message}</h1>
             </div>
         )

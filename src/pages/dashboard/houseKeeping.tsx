@@ -72,7 +72,7 @@ function HouseKeeping() {
                     <Table>
                         <TableHeader>
                             <TableRow className="text-xs">
-                                <TableHead className="text-gray-400">ROOM</TableHead>
+                                <TableHead className="text-gray-400">ROOM/TASKS</TableHead>
                                 <TableHead className="text-gray-400">TYPE</TableHead>
                                 <TableHead className="text-gray-400">STATUS</TableHead>
                                 <TableHead className="text-gray-400">ASSIGNED TO</TableHead>
@@ -87,7 +87,7 @@ function HouseKeeping() {
                                     houseKeepingDetails.map((houseKeeping) => (
                                         <TableRow key={houseKeeping._id} className="cursor-pointer">
                                             <TableCell><span className="text-xs px-3 py-1 rounded-sm bg-slider/10 text-slider">
-                                                {houseKeeping.rooms?.roomName ?? "Room unavailable"}
+                                                {houseKeeping.rooms?.roomName ?? houseKeeping.tasks.title}
                                             </span></TableCell>
                                             <TableCell className="text-xs text-[#F4EFE4] capitalize">{houseKeeping.type}</TableCell>
                                             <TableCell><span className={`text-xs px-3 py-1 rounded-sm ${statusStyles[houseKeeping.status] ?? "bg-gray-500/10 text-gray-500"}`}>
@@ -98,7 +98,7 @@ function HouseKeeping() {
                                                 {houseKeeping.tasks?.priority ?? "—"}
                                             </span></TableCell>
                                             <TableCell className="text-xs text-[#F4EFE4]">{houseKeeping.tasks?.due ?? "—"}</TableCell>
-                                            <TableCell><span className="text-xs text-[#F4EFE4] border border-primary py-1 px-3 rounded-sm hover:border-amber-400/40">EDIT</span></TableCell>
+                                           
                                         </TableRow>
                                     ))
                                 ) : (

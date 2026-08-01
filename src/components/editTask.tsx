@@ -1,4 +1,4 @@
-import { useState, type FormEvent, type ChangeEvent } from "react"
+import { useState, useEffect, type FormEvent, type ChangeEvent } from "react"
 import { Button } from "@/components/ui/button"
 import {
     Dialog,
@@ -7,17 +7,15 @@ import {
     DialogFooter,
     DialogHeader,
     DialogTitle,
-    DialogTrigger,
 } from "@/components/ui/dialog"
 import { Field, FieldGroup } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Plus } from "lucide-react"
 import { NativeSelect, NativeSelectOption } from "../components/ui/native-select"
 import { DatePickerInput } from "./popover"
 import { Textarea } from "./ui/textarea"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import type { CreateTaskPayload, TaskPriority } from "@/types/task-type"
+import type { CreateTaskPayload, Task, TaskPriority } from "@/types/task-type"
 import { tasksService } from "@/services/tasks-service"
 import { StaffService } from "@/services/staff-service"
 import { toast } from "sonner"
@@ -27,17 +25,32 @@ function toApiDate(date: Date | undefined) {
     return date ? date.toISOString().split("T")[0] : ""
 }
 
-export function AssignTask() {
+interface EditTaskProps {
+    task: Task
+    open: boolean
+    onOpenChange: (open: boolean) => void
+}
+
+export function EditTask({ task, open, onOpenChange }: EditTaskProps) {
     const queryClient = useQueryClient()
 
-    const [title, setTitle] = useState("")
-    const [type, setType] = useState("")
-    const [staffId, setStaffId] = useState("")
-    const [roomId, setRoomId] = useState("")
-    const [priority, setPriority] = useState<TaskPriority>("low")
-    const [due, setDue] = useState<Date | undefined>()
-    const [notes, setNotes] = useState("")
-    const [open, setOpen] = useState(false)
+    const [title, setTitle] = useState(task.title)
+    const [type, setType] = useState(task.type ?? "")
+    const [staffId, setStaffId] = useState(task.staffs?._id ?? "")
+    const [roomId, setRoomId] = useState(task.rooms?._id ?? "")
+    const [priority, setPriority] = useState<TaskPriority>(task.priority)
+    const [due, setDue] = useState<Date | undefined>(task.due ? new Date(task.due) : undefined)
+    const [notes, setNotes] = useState(task.notes ?? "")
+
+    useEffect(() => {
+        setTitle(task.title)
+        setType(task.type ?? "")
+        setStaffId(task.staffs?._id ?? "")
+        setRoomId(task.rooms?._id ?? "")
+        setPriority(task.priority)
+        setDue(task.due ? new Date(task.due) : undefined)
+        setNotes(task.notes ?? "")
+    }, [task])
 
     const { data: staffs } = useQuery({
         queryKey: ["staffs"],
@@ -49,23 +62,16 @@ export function AssignTask() {
         queryFn: () => HotelroomServices.getAllRooms()
     })
 
-    const { mutate: assignTask, isPending } = useMutation({
-        mutationFn: (payload: CreateTaskPayload) => tasksService.createTask(payload),
+    const { mutate: updateTask, isPending } = useMutation({
+        mutationFn: (payload: Partial<CreateTaskPayload>) => tasksService.updateTask(task._id, payload),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["tasks"] })
             queryClient.invalidateQueries({ queryKey: ["housekeeping"] })
-            toast.success("Task assigned successfully")
-            setTitle("")
-            setType("")
-            setStaffId("")
-            setRoomId("")
-            setPriority("low")
-            setDue(undefined)
-            setNotes("")
-            setTimeout(() => setOpen(false), 1500)
+            toast.success("Task updated successfully")
+            onOpenChange(false)
         },
         onError: (err: any) => {
-            toast.error(err?.response?.data?.message ?? "Unable to assign task. Please try again.")
+            toast.error(err?.response?.data?.message ?? "Unable to update task. Please try again.")
         }
     })
 
@@ -74,10 +80,6 @@ export function AssignTask() {
 
         if (!title.trim()) {
             toast.error("Please enter a task title.")
-            return
-        }
-        if (!type) {
-            toast.error("Please enter a task type")
             return
         }
         if (!staffId) {
@@ -89,41 +91,31 @@ export function AssignTask() {
             return
         }
 
-        const payload: CreateTaskPayload = {
+        updateTask({
             staffs: staffId,
             rooms: roomId || undefined,
             title,
             type,
             priority,
             due: toApiDate(due),
-            done: false,
-        }
-
-        assignTask(payload)
+            notes,
+        })
     }
 
     return (
-        <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger
-                type="button"
-                className="flex items-center gap-2 bg-slider px-3 py-2 rounded-md cursor-pointer text-sm w-35 text-black hover:text-white hover:bg-slider/60 transition-all duration-300"
-            >
-                <Plus className="w-4 h-4" />
-                <p>ASSIGN TASK</p>
-            </DialogTrigger>
+        <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent className="bg-[#12100D] max-h-[95vh] overflow-y-auto">
                 <DialogHeader>
-                    <DialogTitle className="text-white">Assign New Task</DialogTitle>
+                    <DialogTitle className="text-white">Update Task</DialogTitle>
                 </DialogHeader>
 
-                <form id="assign-task-form" onSubmit={handleSubmit}>
+                <form id="edit-task-form" onSubmit={handleSubmit}>
                     <FieldGroup>
                         <Field className="text-white">
                             <Label htmlFor="title">TASK TITLE</Label>
                             <Input
                                 type="text"
                                 id="title"
-                                placeholder="e.g. Clean Larita suite"
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
                             />
@@ -134,7 +126,6 @@ export function AssignTask() {
                             <Input
                                 type="text"
                                 id="type"
-                                placeholder="e.g. Deep clean"
                                 value={type}
                                 onChange={(e) => setType(e.target.value)}
                             />
@@ -165,7 +156,7 @@ export function AssignTask() {
                                 {
                                     rooms?.map((room) => (
                                         <NativeSelectOption key={room._id} value={room._id}>
-                                            {room.roomName} - {room.status}
+                                            {room.roomName} - {room.category}
                                         </NativeSelectOption>
                                     ))
                                 }
@@ -184,12 +175,11 @@ export function AssignTask() {
                         </Field>
                         <Field className="text-white">
                             <Label htmlFor="due">DUE DATE</Label>
-                            <DatePickerInput onSelect={setDue} />
+                            <DatePickerInput onSelect={setDue} defaultValue={due} />
                         </Field>
                         <Field className="text-white">
                             <Label htmlFor="notes">NOTES</Label>
                             <Textarea
-                                placeholder="Additional details..."
                                 value={notes}
                                 onChange={(e) => setNotes(e.target.value)}
                             />
@@ -203,11 +193,11 @@ export function AssignTask() {
                     </DialogClose>
                     <Button
                         type="submit"
-                        form="assign-task-form"
+                        form="edit-task-form"
                         disabled={isPending}
                         className="bg-slider cursor-pointer text-black py-4 px-3 hover:bg-slider/90 font-medium hover:text-white flex items-center disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                        {isPending ? "Assigning..." : "Assign Task"}
+                        {isPending ? "Saving..." : "Save Changes"}
                     </Button>
                 </DialogFooter>
             </DialogContent>

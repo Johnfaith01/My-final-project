@@ -4,9 +4,22 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover"
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { HotelroomServices } from '@/services/hotelRoom-service'
 import type { HotelType } from '@/types/hotel-type'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'sonner'
+import { Button } from '@/components/ui/button'
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+} from "@/components/ui/alert-dialog"
 
 const statusStyles: Record<string, string> = {
     "vacant": "bg-green-500/10 text-green-500 border border-green-500/20",
@@ -23,11 +36,27 @@ const statusDotColor: Record<string, string> = {
 }
 
 function RoomDashboard() {
+    const navigate = useNavigate()
+    const queryClient = useQueryClient()
     const [selectedRoom, setSelectedRoom] = useState<HotelType | null>(null)
+    const [deleteTarget, setDeleteTarget] = useState<HotelType | null>(null)
 
     const { data: rooms, error, isLoading } = useQuery({
         queryKey: ["rooms"],
         queryFn: () => HotelroomServices.getAllRooms()
+    })
+
+    const { mutate: deleteRoom, isPending: isDeleting } = useMutation({
+        mutationFn: (id: string) => HotelroomServices.deleteRoom(id),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["rooms"] })
+            toast.success("Room deleted")
+            setDeleteTarget(null)
+            setSelectedRoom(null)
+        },
+        onError: (err: any) => {
+            toast.error(err?.response?.data?.message ?? "Unable to delete room")
+        }
     })
 
     const handleClick = (room: HotelType) => {
@@ -59,7 +88,7 @@ function RoomDashboard() {
                 className=" grid grid-cols-2 md:grid-cols-5 gap-3 p-5">
                 {
                     rooms?.map((room) => (
-                        <Popover key={room._id}>
+                        <Popover key={room._id} open={selectedRoom?._id === room._id}>
                             <PopoverTrigger asChild>
                                 <div
                                     onClick={(e) => {
@@ -75,11 +104,30 @@ function RoomDashboard() {
                             <PopoverContent
                                 side="right"
                                 align="end"
-                                className="w-fit bg-[#1C1914] border border-primary px-3 py-2"
+                                className="w-fit bg-[#1C1914] border border-primary px-3 py-3"
+                                onClick={(e) => e.stopPropagation()}
                             >
-                                <div className="flex items-center gap-2 text-sm text-[#F4EFE4]">
+                                <div className="flex items-center gap-2 text-sm text-[#F4EFE4] mb-3">
                                     <span className={`w-2 h-2 rounded-full ${statusDotColor[room.status ?? ""] || 'bg-gray-400'}`} />
                                     <span>{room.roomName} — {room.status}</span>
+                                </div>
+                                <div className="flex gap-2">
+                                    <Button
+                                        size="sm"
+                                        variant="outline"
+                                        className="cursor-pointer border border-primary text-white hover:bg-primary/10"
+                                        onClick={() => navigate(`/rooms/editRoom/${room._id}`)}
+                                    >
+                                        Edit
+                                    </Button>
+                                    <Button
+                                        size="sm"
+                                        variant="outline"
+                                        className="cursor-pointer border border-red-500/40 text-red-400 hover:bg-red-500/10"
+                                        onClick={() => setDeleteTarget(room)}
+                                    >
+                                        Delete
+                                    </Button>
                                 </div>
                             </PopoverContent>
 
@@ -108,8 +156,28 @@ function RoomDashboard() {
                     <h1 className='text-xs text-gray-400'>Needs cleaning</h1>
                 </div>
             </div>
-        </div>
 
+            <AlertDialog open={!!deleteTarget} onOpenChange={(open) => !open && setDeleteTarget(null)}>
+                <AlertDialogContent className="bg-[#12100D]">
+                    <AlertDialogHeader>
+                        <AlertDialogTitle className="text-white">Delete {deleteTarget?.roomName}?</AlertDialogTitle>
+                        <AlertDialogDescription>
+                            This action cannot be undone.
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter className="bg-[#12100D]">
+                        <AlertDialogCancel className="bg-transparent text-white hover:bg-transparent cursor-pointer">Cancel</AlertDialogCancel>
+                        <AlertDialogAction
+                            className="cursor-pointer"
+                            onClick={() => deleteTarget && deleteRoom(deleteTarget._id)}
+                            disabled={isDeleting}
+                        >
+                            {isDeleting ? "Deleting..." : "Delete"}
+                        </AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
+        </div>
     )
 }
 

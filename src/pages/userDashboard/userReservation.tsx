@@ -1,5 +1,4 @@
-import DashboardLayout from "@/components/dashboardlayout"
-import ReservationView from "@/components/reservation-view"
+import GuestDashboardLayout from "@/components/guestDashboardLayout"
 import {
     Table,
     TableBody,
@@ -9,8 +8,8 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import { ReservationServices } from "@/services/reservation-service"
+import { getStoredUser } from "@/lib/get-stored-user"
 import { useQuery } from "@tanstack/react-query"
-import { useState } from "react"
 
 const statusStyles: Record<string, string> = {
     "checked-in": "bg-blue-500/10 text-blue-500 border border-blue-500/20",
@@ -26,80 +25,57 @@ const statusLabels: Record<string, string> = {
     cancel: "Cancelled",
 }
 
-const filters = ["All", "pending", "checked-in", "checked-out", "cancel"]
+function MyReservations() {
 
-function Reservation() {
+    const user = getStoredUser()
 
     const { data: reservations, error, isLoading } = useQuery({
-        queryKey: ["reservations"],
-        queryFn: () => ReservationServices.getAllReservations()
+        queryKey: ["my-reservations", user?._id],
+        queryFn: () => ReservationServices.getMyReservations(user!._id),
+        enabled: !!user?._id
     })
-
-    const [activeFilter, setActiveFilter] = useState("All")
-
-    const filteredReservations = activeFilter === "All"
-        ? reservations
-        : reservations?.filter((r) => r.status === activeFilter)
 
     if (isLoading) {
         return (
-            <DashboardLayout>
-                <p className="text-gray-400 text-sm">Loading reservations...</p>
-            </DashboardLayout>
+            <GuestDashboardLayout>
+                <p className="text-gray-400 text-sm">Loading your reservations...</p>
+            </GuestDashboardLayout>
         )
     }
 
-    if (error?.message) {
+    if (error) {
         return (
-            <DashboardLayout>
-                <p className="text-red-500 text-sm flex items-center justify-center min-h-[90vh]">You are not allowed to access this route</p>
-            </DashboardLayout>
+            <GuestDashboardLayout>
+                <p className="text-red-500 text-sm">Unable to load your reservations.</p>
+            </GuestDashboardLayout>
         )
     }
 
     return (
-        <DashboardLayout>
+        <GuestDashboardLayout>
 
             <div className="flex flex-col mb-5">
-                <h1 className="text-white text-2xl">Reservations</h1>
-                <p className="text-gray-400 text-sm">All bookings</p>
+                <h1 className="text-white text-2xl">My Reservations</h1>
+                <p className="text-gray-400 text-sm">All your bookings with us</p>
             </div>
 
-            <div className="flex gap-2 mb-5 flex-wrap">
-                {
-                    filters.map((filter) => (
-                        <button
-                            key={filter}
-                            onClick={() => setActiveFilter(filter)}
-                            className={`py-2 text-xs px-4 bg-[#12100D] cursor-pointer transition-colors duration-200 ${activeFilter === filter ? "border border-amber-400/40 text-slider bg-slider/10" : "border border-primary text-gray-400 hover:border-gray-400/50 hover:text-gray-300"}`}
-                        >
-                            {filter === "All" ? "All" : statusLabels[filter] ?? filter}
-                        </button>
-                    ))
-                }
-            </div>
             <div className="border border-primary bg-[#12100D] w-full overflow-x-auto">
                 <Table>
                     <TableHeader>
                         <TableRow className="text-xs">
-                            <TableHead className="text-gray-400">GUEST</TableHead>
                             <TableHead className="text-gray-400">ROOM</TableHead>
                             <TableHead className="text-gray-400">CHECK-IN</TableHead>
                             <TableHead className="text-gray-400">CHECK-OUT</TableHead>
                             <TableHead className="text-gray-400">NIGHTS</TableHead>
                             <TableHead className="text-gray-400">AMOUNT</TableHead>
                             <TableHead className="text-gray-400">STATUS</TableHead>
-                            <TableHead></TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
                         {
-                            filteredReservations && filteredReservations.length > 0 ? (
-                                filteredReservations.map((reservation) => (
-                                    <TableRow key={reservation._id} className="cursor-pointer">
-                                        <TableCell className="text-xs text-[#F4EFE4]">
-                                            {reservation.users?.fullname ?? "Unknown guest"}
-                                        </TableCell>
+                            reservations && reservations.length > 0 ? (
+                                reservations.map((reservation) => (
+                                    <TableRow key={reservation._id}>
                                         <TableCell>
                                             <span className="text-xs px-3 py-1 rounded-sm bg-slider/10 text-slider">
                                                 {reservation.rooms?.roomName ?? "Room unavailable"}
@@ -109,18 +85,17 @@ function Reservation() {
                                         <TableCell className="text-xs text-[#F4EFE4]">{reservation.checkOut}</TableCell>
                                         <TableCell className="text-xs text-[#F4EFE4]">{reservation.nights}</TableCell>
                                         <TableCell className="text-xs text-[#F4EFE4]">₦{new Intl.NumberFormat().format(Number(reservation.amount))}</TableCell>
-                                        <TableCell> <span className={`text-xs px-3 py-1 rounded-sm ${statusStyles[reservation.status] ?? "bg-gray-500/10 text-gray-500"}`}>
-                                            {statusLabels[reservation.status] ?? reservation.status}
-                                        </span></TableCell>
                                         <TableCell>
-                                            <ReservationView reservation={reservation} />
+                                            <span className={`text-xs px-3 py-1 rounded-sm ${statusStyles[reservation.status] ?? "bg-gray-500/10 text-gray-500"}`}>
+                                                {statusLabels[reservation.status] ?? reservation.status}
+                                            </span>
                                         </TableCell>
                                     </TableRow>
                                 ))
                             ) : (
                                 <TableRow>
-                                    <TableCell colSpan={8} className="text-center text-gray-400 text-sm py-6">
-                                        No reservations found.
+                                    <TableCell colSpan={6} className="text-center text-gray-400 text-sm py-6">
+                                        You have no reservations yet.
                                     </TableCell>
                                 </TableRow>
                             )
@@ -129,8 +104,8 @@ function Reservation() {
                 </Table>
             </div>
 
-        </DashboardLayout>
+        </GuestDashboardLayout>
     )
 }
 
-export default Reservation
+export default MyReservations

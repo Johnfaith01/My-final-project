@@ -7,22 +7,53 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
-import guestData from "@/mocks/guests.json"
 import AddGuest from "@/components/addGuest"
+import { useQuery } from "@tanstack/react-query"
+import { guestsService } from "@/services/guest-service"
 
 const statusStyles: Record<string, string> = {
-    "Checked In": "bg-green-500/10 text-green-500 border border-green-500/20",
-    "Pending": "bg-amber-500/10 text-amber-500 border border-amber-500/20",
-    "Checked Out": "bg-red-500/10   text-red-500   border border-red-500/20",
+    "checked-in": "bg-green-500/10 text-green-500 border border-green-500/20",
+    "pending": "bg-amber-500/10 text-amber-500 border border-amber-500/20",
+    "checked-out": "bg-red-500/10 text-red-500 border border-red-500/20",
+    "cancel": "bg-gray-500/10 text-gray-500 border border-gray-500/20",
+}
+
+const statusLabels: Record<string, string> = {
+    "checked-in": "Checked In",
+    "pending": "Pending",
+    "checked-out": "Checked Out",
+    "cancel": "Cancelled",
 }
 
 const formatNaira = (amount: number) => {
-  if (amount >= 1000000) return `₦${(amount / 1000000).toFixed(1)}M`
-  if (amount >= 1000)    return `₦${(amount / 1000).toFixed(0)}K`
-  return `₦${amount.toLocaleString()}`
+    if (amount >= 1000000) return `₦${(amount / 1000000).toFixed(1)}M`
+    if (amount >= 1000) return `₦${(amount / 1000).toFixed(0)}K`
+    return `₦${amount.toLocaleString()}`
 }
 
 function Guests() {
+
+    const { data: guestData, error, isLoading } = useQuery({
+        queryKey: ["guests"],
+        queryFn: () => guestsService.getAllUsers()
+    })
+
+    if (isLoading) {
+        return (
+            <DashboardLayout>
+                <p className="text-gray-400 text-sm">Loading guests...</p>
+            </DashboardLayout>
+        )
+    }
+
+    if (error) {
+        return (
+            <DashboardLayout>
+                <p className="text-red-500 text-sm">Unable to load guests.</p>
+            </DashboardLayout>
+        )
+    }
+
     return (
         <DashboardLayout>
 
@@ -43,29 +74,50 @@ function Guests() {
                         <TableRow className="text-xs">
                             <TableHead className="text-gray-400">NAME</TableHead>
                             <TableHead className="text-gray-400">ROOM</TableHead>
-                            <TableHead className="text-gray-400">NATIONALITY</TableHead>
                             <TableHead className="text-gray-400">LOYALTY</TableHead>
-                            <TableHead className="text-gray-400">STAY</TableHead>
+                            <TableHead className="text-gray-400">STAYS</TableHead>
                             <TableHead className="text-gray-400">TOTAL SPEND</TableHead>
                             <TableHead className="text-gray-400">STATUS</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
                         {
-                            guestData.map((guest, i) => (
-                                <TableRow key={guest.name + i} className="cursor-pointer">
-                                    <TableCell className="text-xs text-[#F4EFE4]">{guest.name}</TableCell>
-                                    <TableCell className="text-xs text-[#F4EFE4]"><span className="text-xs px-3 py-1 rounded-sm bg-slider/10 text-slider">{guest.currentRoom}</span></TableCell>
-                                    <TableCell className="text-xs text-[#F4EFE4]">{guest.nationality}</TableCell>
-                                    <TableCell className="text-xs text-slider">{guest.loyaltyTier}</TableCell>
-                                    <TableCell className="text-xs text-[#F4EFE4]">{guest.totalStays}</TableCell>
-                                    <TableCell className="text-xs text-slider">{formatNaira(guest.totalSpend)}</TableCell>
-                                    <TableCell><span className={`text-xs text-[#F4EFE4] px-3 py-1 rounded-sm ${statusStyles[guest.status] ?? "bg-gray-500/10 text-gray-500"}`}>{guest.status}</span></TableCell>
+                            guestData && guestData.length > 0 ? (
+                                guestData.map((guest) => {
+                                    const latestReservation = guest.reservations?.[guest.reservations.length - 1]
+                                    const totalSpend = guest.reservations?.reduce((sum, r) => sum + Number(r.amount ), 0) ?? 0
+
+                                    return (
+                                        <TableRow key={guest._id} className="cursor-pointer">
+                                            <TableCell className="text-xs text-[#F4EFE4]">{guest.fullname}</TableCell>
+                                            <TableCell className="text-xs text-[#F4EFE4]">
+                                                <span className="text-xs px-3 py-1 rounded-sm bg-slider/10 text-slider">
+                                                    {latestReservation?.rooms?.roomName ?? "No stays yet"}
+                                                </span>
+                                            </TableCell>
+                                            <TableCell className="text-xs text-slider">{guest.loyaltyTier}</TableCell>
+                                            <TableCell className="text-xs text-[#F4EFE4]">{guest.reservations?.length ?? 0}</TableCell>
+                                            <TableCell className="text-xs text-slider">{formatNaira(totalSpend)}</TableCell>
+                                            <TableCell>
+                                                {latestReservation ? (
+                                                    <span className={`text-xs text-[#F4EFE4] px-3 py-1 rounded-sm ${statusStyles[latestReservation.status] ?? "bg-gray-500/10 text-gray-500"}`}>
+                                                        {statusLabels[latestReservation.status] ?? latestReservation.status}
+                                                    </span>
+                                                ) : (
+                                                    <span className="text-xs text-gray-500">—</span>
+                                                )}
+                                            </TableCell>
+                                        </TableRow>
+                                    )
+                                })
+                            ) : (
+                                <TableRow>
+                                    <TableCell colSpan={6} className="text-center text-gray-400 text-sm py-6">
+                                        No guests found.
+                                    </TableCell>
                                 </TableRow>
-                            ))
+                            )
                         }
-
-
                     </TableBody>
                 </Table>
             </div>

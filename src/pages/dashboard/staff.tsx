@@ -1,5 +1,6 @@
 import AddStaff from "@/components/addStaff"
 import DashboardLayout from "@/components/dashboardlayout"
+import { StaffActions } from "@/components/StaffActions"
 import {
     Table,
     TableBody,
@@ -49,7 +50,7 @@ function Staff() {
             <div className="text-white mb-7 flex justify-between">
                 <div>
                     <h1 className='text-white text-2xl'>Staff Management</h1>
-                    <p className='text-gray-400 text-sm'>{staffs?.length ?? 0} active staff members</p>
+                    <p className='text-gray-400 text-sm'>{staffs?.length ?? 0} staff members</p>
                 </div>
 
                 <div>
@@ -65,8 +66,8 @@ function Staff() {
                             <TableHead className="text-gray-400">ROLE</TableHead>
                             <TableHead className="text-gray-400">DEPARTMENT</TableHead>
                             <TableHead className="text-gray-400">SHIFT</TableHead>
-                            <TableHead className="text-gray-400">TASKS TODAY</TableHead>
                             <TableHead className="text-gray-400">STATUS</TableHead>
+                            <TableHead className="text-gray-400">ACTIONS</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -75,14 +76,16 @@ function Staff() {
                                 staffs.map((staff) => (
                                     <TableRow key={staff._id} className="cursor-pointer">
                                         <TableCell className="text-xs text-[#F4EFE4]">{staff.name}</TableCell>
-                                        <TableCell className="text-xs text-[#F4EFE4]">{staff.staffRole}</TableCell>
-                                        <TableCell className="text-xs text-[#F4EFE4]">{staff.dept}</TableCell>
+                                        <TableCell className="text-xs capitalize text-[#F4EFE4]">{staff.staffRole}</TableCell>
+                                        <TableCell className="text-xs capitalize text-[#F4EFE4]">{staff.department}</TableCell>
                                         <TableCell className="text-xs text-[#F4EFE4] capitalize">{staff.shift}</TableCell>
-                                        <TableCell className="text-xs text-[#F4EFE4]">—</TableCell>
                                         <TableCell>
                                             <span className={`text-xs px-3 py-1 rounded-sm ${statusStyles[staff.status] ?? "bg-gray-500/10 text-gray-500"}`}>
                                                 {statusLabels[staff.status] ?? staff.status}
                                             </span>
+                                        </TableCell>
+                                        <TableCell>
+                                            <StaffActions staff={staff} />
                                         </TableCell>
                                     </TableRow>
                                 ))

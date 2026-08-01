@@ -1,4 +1,5 @@
 import { FaStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export default function About() {
     return (
@@ -13,7 +14,7 @@ export default function About() {
                     <h1 className="text-[#B8924A] text-lg sm:text-xl md:text-2xl">WELCOME TO LARITA</h1>
                     <h2 className="text-2xl sm:text-3xl md:text-4xl">Luxury hotel in the heart <br /> of the city.</h2>
                     <p className="text-sm sm:text-base text-gray-600 leading-normal">Larita luxury hotel, in the heart of the city offers over 12 modern, luxurious rooms. Enjoy premium facilities, perfect for relaxation and indulgence. Our friendly staff ensures a seamless, personalized experience, with stunning city views. Discover true luxury and hospitality with Larita.</p>
-                    <button className="flex items-start bg-[#B8924A] p-2 rounded-md text-white w-fit cursor-pointer text-sm sm:text-base">Read More</button>
+                    <Link to="/about" className="flex items-start bg-[#B8924A] p-2 rounded-md text-white w-fit cursor-pointer text-sm sm:text-base">Read More</Link>
 
                 </div>
             </div>

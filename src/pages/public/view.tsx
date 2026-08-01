@@ -1,48 +1,50 @@
-import hotel from "../../mocks/hotel-rooms.json"
 import { useNavigate, useParams } from "react-router-dom"
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { Badge } from "../../components/ui/badge"
 import { FaStar } from "react-icons/fa";
 import { useState } from "react";
 import { Bed, Ruler, Users, Building, ShowerHead } from "lucide-react";
-
-
+import { useQuery } from "@tanstack/react-query"
+import { HotelroomServices } from "@/services/hotelRoom-service"
 
 function ViewPage() {
     const { slug } = useParams()
-
-    const hotels = hotel.find((hotels) => hotels.slug === slug)
-
-    if (!hotels) {
-        return (
-            
-            <div className="flex justify-center items-center min-h-screen bg-black text-white">
-                <h1 className="p-20 rounded-md bg-[#12100D]">Room not found</h1>
-            </div>
-        )
-    }
-
-    const [activeImg, setActiveImg] = useState(0);
-
     const navigate = useNavigate()
+    const [activeImg, setActiveImg] = useState(0)
+
+    const { data: hotels, error, isLoading } = useQuery({
+        queryKey: ["room", slug],
+        queryFn: () => HotelroomServices.getRoomBySlug(slug!),
+        enabled: !!slug,
+    })
 
     const clickHandler = () => {
         navigate("/")
     }
 
-    const booking = useNavigate()
-    const handleBooking = ()=>{
+    const handleBooking = () => {
         if (!slug) return
-        booking(`/booking/${slug}`)
+        navigate(`/booking/${slug}`)
     }
 
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center min-h-screen bg-black text-white">
+                <h1 className="p-20 rounded-md bg-[#12100D]">Loading...</h1>
+            </div>
+        )
+    }
 
-   
+    if (error || !hotels) {
+        return (
+            <div className="flex justify-center items-center min-h-screen bg-black text-white">
+                <h1 className="p-20 rounded-md bg-[#12100D]">{error?.message ?? "Room not found"}</h1>
+            </div>
+        )
+    }
+
     return (
-
-
         <section className="w-full px-4 md:w-[90%] mx-auto py-4">
-
 
             <button
                 onClick={clickHandler}
@@ -58,14 +60,13 @@ function ViewPage() {
                         <img key={i} src={image} alt="" onClick={() => setActiveImg(i + 1)} className="w-full h-30 object-cover" />
                     ))
                 }
-
             </div>
 
             <div className="grid md:grid-cols-[70%_30%] gap-4 my-10 items-center">
                 <div className="flex flex-col gap-2">
                     <h1 className="font-semibold text-[#B8924A] uppercase">{hotels.category} · Floor {hotels.floor}</h1>
 
-                    <h1 className="text-2xl md:text-4xl">{hotels.name}</h1>
+                    <h1 className="text-2xl md:text-4xl">{hotels.roomName}</h1>
 
                     <h1 className="flex items-center gap-2 text-sm  text-[#beb08d]">
                         <div className="flex gap-1 w-17 h-2.5 text-[#B8924A]">
@@ -76,9 +77,9 @@ function ViewPage() {
                             <FaStar />
                         </div>
 
-                        <p>4.9</p>
+                        <p>{hotels.rating ?? "4.9"}</p>
 
-                        <p>({hotels.reviewCount} reviews)</p>
+                        <p>({hotels.reviewCount ?? 0} reviews)</p>
                     </h1>
 
                     <p className="text-[#beb08d]">{hotels.description}</p>
@@ -143,7 +144,6 @@ function ViewPage() {
                     </div>
                 </div>
 
-
                 <div className="flex flex-col gap-3 p-5 bg-[#12100D] border border-primary shadow-2xl rounded-sm  text-white h-fit md:w-full text-center md:text-start">
                     <div>
                         <h1 className="font-bold text-xl">₦{new Intl.NumberFormat("en-NG").format(hotels.pricePerNight)}</h1>
@@ -152,41 +152,9 @@ function ViewPage() {
 
                     <hr className="border border-primary"/>
 
-                    {/* <div>
-                        <DatePickerInput label="Check In" className="w-full" onSelect={handleCheckIn} />
-                    </div>
-
-                    <div>
-                        <DatePickerInput label="Check Out" className="w-full" onSelect={handleCheckOut} />
-                    </div>
-
-                    <div className="flex flex-col gap-2">
-                        <h1 className="text-sm text-white font-bold">GUESTS</h1>
-                        <NativeSelect className="w-full ">
-                            <NativeSelectOption value="">No of guests</NativeSelectOption>
-                            <NativeSelectOption value="1">1 Guest</NativeSelectOption>
-                            <NativeSelectOption value="2">2 Guests</NativeSelectOption>
-                            <NativeSelectOption value="3">3 Guests</NativeSelectOption>
-                            <NativeSelectOption value="4">4 Guests</NativeSelectOption>
-                        </NativeSelect>
-                    </div>
-
-                    <div>
-                        <form className="flex flex-col gap-3">
-                            <label className="text-white font-bold">NIGHTS</label>
-                            <Input
-                                type="text"
-                                readOnly
-                                value={nights === 0 ? "" : `${nights} night${nights > 1 ? "s" : ""}`}
-                                placeholder="Nights"
-                                className="w-full border border-primary"
-                            />
-                        </form>
-                    </div> */}
-
                     <button
-                    onClick={handleBooking}
-                    className="px-5 py-2 border-none rounded-md bg-[#B8924A] text-white cursor-pointer hover:bg-[#9a7a3d] duration-300">RESERVE NOW</button>
+                        onClick={handleBooking}
+                        className="px-5 py-2 border-none rounded-md bg-[#B8924A] text-white cursor-pointer hover:bg-[#9a7a3d] duration-300">RESERVE NOW</button>
                     <p className="text-xs text-[#beb08d] text-center">No charge until arrival · Free cancellation</p>
 
                 </div>

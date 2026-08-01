@@ -34,7 +34,7 @@ export default function HotelCard({ pricePerNight, category, slug, shortDescript
                     </h1>
                     <div className="flex gap-4">
                         <Link
-                            to={"/booking"}
+                            to={"/rooms&suites"}
                             className="bg-[#B8924A] text-white px-4 py-2 md:px-5 md:py-3 w-max rounded-md text-sm md:text-base cursor-pointer hover:bg-transparent hover:border hover:border-primary transition-all">
                             BOOK NOW
                         </Link>

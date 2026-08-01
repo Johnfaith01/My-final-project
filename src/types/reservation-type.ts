@@ -7,7 +7,7 @@ export type ReservationPreferences = {
     breakfast?: string
 }
 
-export type ReservationStatus = "check_in" | "check_out" | "pending" | "cancel"
+export type ReservationStatus = "checked-in" | "checked-out" | "pending" | "cancel"
 
 
 export type ReservationRoom = {
@@ -45,4 +45,16 @@ export type Reservation = {
     preferences: ReservationPreferences
     createdAt: string
     updatedAt: string
+}
+
+export type CreateReservationPayload = {
+    user: string
+    room: string
+    checkIn: string
+    checkOut: string
+    nights: number
+    carTransport?: string
+    spaAccess?: string
+    roomUpgrade?: string
+    breakfast?: string
 }

@@ -42,10 +42,10 @@ function Hotels() {
                     <h1 className="text-5xl">Rooms & Suites</h1>
                 </div>
 
-                <Carousel className="w-[80%] mx-auto md:w-[90%]">
+                <Carousel className="w-[80%] mx-auto md:w-[90%] mb-25">
                     <CarouselContent>
                         {
-                            rooms?.map((room) => (
+                            rooms?.slice(0,5).map((room) => (
                                 <CarouselItem key={room._id} className="basis-full">
 
                                     <HotelCard
