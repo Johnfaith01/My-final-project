@@ -1,4 +1,3 @@
-import AddRoom from "@/components/addRoom"
 import DashboardLayout from "@/components/dashboardlayout"
 import RoomDashboard from "@/components/roomDashboard"
 import { Plus } from "lucide-react"

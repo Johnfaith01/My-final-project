@@ -1,5 +1,4 @@
 import DashboardLayout from "@/components/dashboardlayout"
-import { FaArrowUp } from "react-icons/fa6";
 import Reservations from "@/components/reservations";
 import OverviewCard from "@/components/overview-card";
 import { useNavigate } from "react-router-dom";

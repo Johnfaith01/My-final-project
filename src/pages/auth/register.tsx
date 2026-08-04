@@ -112,7 +112,7 @@ function Register() {
                                         placeholder="Enter Full Name"
                                     />
                                     {
-                                        errors.length > 0 && <span className="text-red-500">{errors[0]}</span>
+                                        errors.length > 0 && <span className="text-red-500">{errors[0] as string}</span>
                                     }
 
                                 </div>
@@ -145,7 +145,7 @@ function Register() {
                                         placeholder="Enter Email"
                                     />
                                     {
-                                        errors.length > 0 && <span className="text-red-500">{errors[0]}</span>
+                                        errors.length > 0 && <span className="text-red-500">{errors[0] as string}</span>
                                     }
 
                                 </div>
@@ -176,7 +176,7 @@ function Register() {
                                         placeholder="Enter Phone Number"
                                     />
                                     {
-                                        errors.length > 0 && <span className="text-red-500">{errors[0]}</span>
+                                        errors.length > 0 && <span className="text-red-500">{errors[0] as string}</span>
                                     }
 
                                 </div>
@@ -209,7 +209,7 @@ function Register() {
                                         placeholder="Enter Password"
                                     />
                                     {
-                                        errors.length > 0 && <span className="text-red-500">{errors[0]}</span>
+                                        errors.length > 0 && <span className="text-red-500">{errors[0] as string}</span>
                                     }
 
                                 </div>
@@ -243,7 +243,7 @@ function Register() {
                                         placeholder="Enter Password"
                                     />
                                     {
-                                        errors.length > 0 && <span className="text-red-500">{errors[0]}</span>
+                                        errors.length > 0 && <span className="text-red-500">{errors[0] as string}</span>
                                     }
                                 </div>
                             }
