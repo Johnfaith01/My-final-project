@@ -1,0 +1,79 @@
+[
+  {
+    "id": "ST-001",
+    "name": "Amaka Eze",
+    "role": "Senior Housekeeper",
+    "dept": "Housekeeping",
+    "shift": "Morning",
+    "tasks":  "4 tasks",
+    "status": "On Duty",
+    "email": "amaka.eze@aurum.ng",
+    "phone": "+234 801 111 2222"
+  },
+  {
+    "id": "ST-002",
+    "name": "Tunde Bello",
+    "role": "Maintenance Tech",
+    "dept": "Maintenance",
+    "shift": "Morning",
+    "tasks": "2 taks",
+    "status": "On Duty",
+    "email": "tunde.bello@aurum.ng",
+    "phone": "+234 802 222 3333"
+  },
+  {
+    "id": "ST-003",
+    "name": "Ngozi Obi",
+    "role": "Front Desk Agent",
+    "dept": "Reception",
+    "shift": "Morning",
+    "tasks": "3 tasks",
+    "status": "On Duty",
+    "email": "ngozi.obi@aurum.ng",
+    "phone": "+234 803 333 4444"
+  },
+  {
+    "id": "ST-004",
+    "name": "Emeka Adio",
+    "role": "Bellhop",
+    "dept": "Guest Services",
+    "shift": "Morning",
+    "tasks": "5 tasks",
+    "status": "On Duty",
+    "email": "emeka.adio@aurum.ng",
+    "phone": "+234 804 444 5555"
+  },
+  {
+    "id": "ST-005",
+    "name": "Sade Lawal",
+    "role": "Concierge",
+    "dept": "Guest Services",
+    "shift": "Afternoon",
+    "tasks": "1 task",
+    "status": "Off Duty",
+    "email": "sade.lawal@aurum.ng",
+    "phone": "+234 805 555 6666"
+  },
+  {
+    "id": "ST-006",
+    "name": "Chidi Osei",
+    "role": "Housekeeper",
+    "dept": "Housekeeping",
+    "shift": "Morning",
+    "tasks": "3 tasks",
+    "status": "On Duty",
+    "email": "chidi.osei@aurum.ng",
+    "phone": "+234 806 666 7777"
+  },
+  {
+    "id": "ST-007",
+    "name": "Rita Nwosu",
+    "role": "Housekeeper",
+    "dept": "Housekeeping",
+    "shift": "Morning",
+    "tasks": "2 tasks",
+    "status": "On Break",
+    "email": "rita.nwosu@aurum.ng",
+    "phone": "+234 807 777 8888"
+  }
+]

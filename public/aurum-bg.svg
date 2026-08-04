@@ -1,0 +1,33 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- 🖤 Base -->
+  <rect width="100%" height="100%" fill="#0A0A0A"></rect>
+
+  <!-- 🌫️ Soft gold glow -->
+  <radialGradient id="goldGlow" cx="78%" cy="42%" r="75%">
+    <stop offset="0%" stop-color="#C9A227" stop-opacity="0.18"></stop>
+    <stop offset="30%" stop-color="#8B6A1A" stop-opacity="0.10"></stop>
+    <stop offset="70%" stop-color="#2A1A0A" stop-opacity="0.05"></stop>
+    <stop offset="100%" stop-color="#0A0A0A" stop-opacity="0"></stop>
+  </radialGradient>
+  <rect width="100%" height="100%" fill="url(#goldGlow)"></rect>
+
+  <!-- 🌑 Subtle vignette -->
+  <radialGradient id="vignette" cx="50%" cy="50%" r="90%">
+    <stop offset="60%" stop-color="#000000" stop-opacity="0"></stop>
+    <stop offset="100%" stop-color="#000000" stop-opacity="0.6"></stop>
+  </radialGradient>
+  <rect width="100%" height="100%" fill="url(#vignette)"></rect>
+
+  <!-- ✨ Diamond grid (same thickness, MORE spacing) -->
+  <defs>
+    <pattern id="grid" width="180" height="180" patternUnits="userSpaceOnUse">
+      <!-- same stroke-width as before, just spaced out -->
+      <path d="M0 180 L180 0" stroke="#C9A227" stroke-width="0.6" opacity="0.08"></path>
+      <path d="M0 0 L180 180" stroke="#C9A227" stroke-width="0.6" opacity="0.08"></path>
+    </pattern>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#grid)"></rect>
+
+</svg>
