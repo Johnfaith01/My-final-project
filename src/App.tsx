@@ -24,11 +24,14 @@ import MyBilling from './pages/userDashboard/userBilling'
 import MyProfile from './pages/userDashboard/userProfile'
 import AddRoomPage from './components/addRoom'
 import EditRoomPage from './components/EditRoomPage'
+import ScrollToTop from './components/scrollToTop'
 
 function App() {
 
   return (
     <>
+
+      <ScrollToTop />
       <Routes>
         {/* Public Routes */}
         <Route path='/' element={<Homepage />} />

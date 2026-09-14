@@ -1,7 +1,7 @@
 import { Bed, Users } from "lucide-react"
 import { FaStar } from "react-icons/fa"
 import { Link } from "react-router-dom"
-
+type RoomStatus = "occupied" | "vacant" | "maintenance" | "dirty"
 interface RoomType {
     images: string[]
     name: string
@@ -12,8 +12,17 @@ interface RoomType {
     maxGuest: number
     bedType: string
     slug?: string
+    status: RoomStatus
 }
-export default function RoomCard({ images, slug, name, category, shortDesc, rating, pricePerNight, maxGuest, bedType }: RoomType) {
+
+const statusStyles = {
+    occupied: "bg-red-700 text-white",
+    vacant: "bg-emerald-700 text-white",
+    dirty: "bg-orange-600 text-white",
+    maintenance: "bg-amber-600 text-white",
+}
+
+export default function RoomCard({ images, slug, name, category, shortDesc, rating, pricePerNight, maxGuest, bedType, status }: RoomType) {
     return (
         <Link to={`/view/${slug}`}>
             <div className="bg-[#12100D] my-2 relative transition-all duration-300 hover:-translate-y-1 hover:border-[#D4AF37] hover:shadow-xl">
@@ -46,6 +55,10 @@ export default function RoomCard({ images, slug, name, category, shortDesc, rati
 
                 <div className="bg-[#12100D] p-2 absolute top-3 left-2">
                     <h1>{category}</h1>
+                </div>
+
+                <div className={`bg-[#12100D] p-2 absolute top-3 right-2 ${statusStyles[status]}`}>
+                    <h1>{status}</h1>
                 </div>
             </div>
         </Link>

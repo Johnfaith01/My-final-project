@@ -10,6 +10,7 @@ import { HotelroomServices } from "@/services/hotelRoom-service"
 import { ReservationServices } from "@/services/reservation-service"
 import { getStoredUser } from "@/lib/get-stored-user"
 import type { CreateReservationPayload } from "@/types/reservation-type"
+import { toast } from "sonner"
 
 export interface AddOnProps {
   Icon?: LucideIcon
@@ -103,7 +104,7 @@ function Booking() {
       })
     },
     onError: (err: any) => {
-      setFormError(err?.response?.data?.message ?? "Something went wrong. Please try again.")
+      toast.error(err?.response?.data?.message ?? "Something went wrong. Please try again.")
     },
   })
 
@@ -111,16 +112,16 @@ function Booking() {
     setFormError(null)
 
     if (!user) {
-      setFormError("Please log in to complete your reservation.")
+      toast.error("Please log in to complete your reservation.")
       navigate("/login")
       return
     }
     if (!room?._id) {
-      setFormError("Room details are still loading.")
+      toast.error("Room details are still loading.")
       return
     }
     if (!checkIn || !checkOut || nights <= 0) {
-      setFormError("Please select valid check-in and check-out dates.")
+      toast.error("Please select valid check-in and check-out dates.")
       return
     }
 

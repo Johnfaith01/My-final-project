@@ -84,6 +84,7 @@ function Room() {
                                 maxGuest={room.maxGuests}
                                 bedType={room.bedType}
                                 slug={room.slug}
+                                status={room.status}
                             />
                         ))
                     ) : (
